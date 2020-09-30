@@ -6,21 +6,21 @@ let Process =
         source : //KAYNAK VERİTABANI BAĞLANTISI
         {
             server: "192.168.100.12",
-            database:"MikroDB_V16_TESTALI",
+            database:"MikroDB_V16_TEST",
             uid:"beka",
             pwd:"1122334455"
         },
         target : //HEDEF VERİTABANI BAĞLANTISI
         {
             server: "192.168.100.12",
-            database:"MikroDB_V16_TESTMAHIR",
+            database:"MikroDB_V16_TESTALI",
             uid:"beka",
             pwd:"1122334455"
         },
-        auto : 3000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        auto : 500000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
         select : 
         {
-            query : "SELECT * FROM CARI_HESAP_HAREKETLERI WHERE cha_evrak_tip = 63"
+            query : "SELECT * FROM CARI_HESAP_HAREKETLERI WHERE cha_evrakno_seri = 'ZYNB'"
         },
         control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
         {
@@ -37,21 +37,21 @@ let Process =
         source : //KAYNAK VERİTABANI BAĞLANTISI
         {
             server: "192.168.100.12",
-            database:"MikroDB_V16_TESTALI",
+            database:"MikroDB_V16_TEST",
             uid:"beka",
             pwd:"1122334455"
         },
         target : //HEDEF VERİTABANI BAĞLANTISI
         {
             server: "192.168.100.12",
-            database:"MikroDB_V16_TESTMAHIR",
+            database:"MikroDB_V16_TESTALI",
             uid:"beka",
             pwd:"1122334455"
         },
-        auto : 3000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        auto : 500000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
         select : 
         {
-            query : "SELECT * FROM STOK_HAREKETLERI WHERE sth_evraktip = 4"
+            query : "SELECT * FROM STOK_HAREKETLERI WHERE sth_evrakno_seri = 'ZYNB' and sth_evrakno_sira = 2"
         },
         control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
         {
@@ -62,6 +62,130 @@ let Process =
         {
             return {...Query.StokHarInsert};
         }
-    }
+    },
+    {
+        name : "STOKLAR", //GÖRÜNEN ADI
+        source : //KAYNAK VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TEST",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        target : //HEDEF VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TESTALI",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        auto : 10000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        select : 
+        {
+            query : "SELECT * FROM STOKLAR  --WHERE sto_create_date  >= DATEADD(minute,-60, GETDATE()) "
+        },
+        control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
+        {
+            query: "SELECT sto_kod FROM STOKLAR WHERE sto_kod = @sto_kod",
+            param:['sto_kod:string|50',]
+        },
+        insert : function()
+        {
+            return {...Query.StoklarInsert};
+        }
+    },
+    {
+        name : "TERP POS SATIS - CARI HAR", //GÖRÜNEN ADI
+        source : //KAYNAK VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TEST",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        target : //HEDEF VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TESTALI",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        auto : 10000000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        select : 
+        {
+            query : "SELECT * FROM TERP_POS_SATIS "
+        },
+        control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
+        {
+            query: "SELECT SIRA FROM TERP_POS_SATIS WHERE  SERI = @SERI AND SIRA = @SIRA AND SATIRNO = @SATIRNO",
+            param:['SERI:string|50','SIRA:int','SATIRNO:int']
+        },
+        insert : function()
+        {
+            return {...Query.PosSatisInsert};
+        }
+    },
+    {
+        name : "POS TAHSILAT ", //GÖRÜNEN ADI
+        source : //KAYNAK VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TEST",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        target : //HEDEF VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TESTALI",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        auto : 100000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        select : 
+        {
+            query : "SELECT * FROM TERP_POS_TAHSILAT"
+        },
+        control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
+        {
+            query: "SELECT SIRA FROM TERP_POS_TAHSILAT WHERE SERI = @SERI AND SIRA = @SIRA AND SATIRNO = @SATIRNO",
+            param:['SERI:string|50','SIRA:int','SATIRNO:int']
+        },
+        insert : function()
+        {
+            return {...Query.PosTahsilatInsert};
+        }
+    },
+    {
+        name : "FIYAT LISTE ", //GÖRÜNEN ADI
+        source : //KAYNAK VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TEST",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        target : //HEDEF VERİTABANI BAĞLANTISI
+        {
+            server: "192.168.100.12",
+            database:"MikroDB_V16_TESTALI",
+            uid:"beka",
+            pwd:"1122334455"
+        },
+        auto : 10000,  //OTOMATİK AKTARIM YAPILACAKSA BURAYA MİLİSANİYE CİNSİNDEN SÜRE YAZILIR (1000 = 1 SN) UNDEFINED VEYA BU KEY TANIMLANMAZSA OTOMATİK AKTARILMAZ.
+        select : 
+        {
+            query : "SELECT * FROM STOK_SATIS_FIYAT_LISTELERI"
+        },
+        control :    //KAYITLAR KARŞI TARAFADA VAR İSE GÜNCELLEMESİ İÇİN KONTROL SORGUSU
+        {
+            query: "SELECT sfiyat_listesirano FROM STOK_SATIS_FIYAT_LISTELERI WHERE sfiyat_listesirano = @sfiyat_listesirano AND sfiyat_stokkod = @sfiyat_stokkod ",
+            param:['sfiyat_listesirano:int','sfiyat_stokkod:string|50']
+        },
+        insert : function()
+        {
+            return {...Query.SatisFiyatListeler};
+        }
+    },
 ]
 module.exports = Process;

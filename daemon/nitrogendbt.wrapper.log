@@ -1,0 +1,22 @@
+2020-09-28 18:16:11 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\Project\NitroDBT\node_modules\node-windows\lib\wrapper.js --file D:\Project\NitroDBT\server.js --scriptoptions= --log "NitroGen DBT wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-09-28 18:16:11 - Started 7892
+2020-09-28 18:33:06 - Stopping nitrogendbt.exe
+2020-09-28 18:33:06 - ProcessKill 7892
+2020-09-28 18:33:07 - Found child process: 15008 Name: conhost.exe
+2020-09-28 18:33:07 - Found child process: 1176 Name: node.exe
+2020-09-28 18:33:07 - Stopping process 15008
+2020-09-28 18:33:07 - Send SIGINT 15008
+2020-09-28 18:33:07 - SIGINT to 15008 failed - Killing as fallback
+2020-09-28 18:33:07 - Stopping process 1176
+2020-09-28 18:33:07 - Send SIGINT 1176
+2020-09-28 18:33:07 - SIGINT to 1176 failed - Killing as fallback
+2020-09-28 18:33:07 - Stopping process 7892
+2020-09-28 18:33:07 - Send SIGINT 7892
+2020-09-28 18:33:07 - SIGINT to 7892 failed - Killing as fallback
+2020-09-28 18:33:07 - Finished nitrogendbt.exe
+2020-09-28 22:26:48 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\Project\NitroDBT\node_modules\node-windows\lib\wrapper.js --file D:\Project\NitroDBT\server.js --scriptoptions= --log "NitroGen DBT wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-09-28 22:26:48 - Started 4960
+2020-09-29 10:04:10 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\Project\NitroDBT\node_modules\node-windows\lib\wrapper.js --file D:\Project\NitroDBT\server.js --scriptoptions= --log "NitroGen DBT wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-09-29 10:04:10 - Started 4780
+2020-09-30 12:52:25 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\Project\NitroDBT\node_modules\node-windows\lib\wrapper.js --file D:\Project\NitroDBT\server.js --scriptoptions= --log "NitroGen DBT wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-09-30 12:52:25 - Started 4016
