@@ -4,7 +4,7 @@ let sync = new _sync();
 sync.Start();
 //******** LOG **********************************************************************/
 var trueLog = console.log;
-console.log = function(msg)
+console.log = function(msg) 
 {
     let BufferDate = new Date().getFullYear().toString() + (new Date().getMonth() + 1).toString().padStart(2, '0') + new Date().getDate().toString().padStart(2, '0');
     
