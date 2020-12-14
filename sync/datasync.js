@@ -59,36 +59,59 @@ function _DataTransfer(pParam)
     {
         console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Kayıtları Aktarılıyor.")
         let SData = await GetData(pParam.select,pParam.source);
-        
+
+        if(typeof SData.err != 'undefined')
+        {
+            console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Get  İşleminde Hata 01: " + SData.err)
+            resolve();
+        }
+
         for (let i = 0;i < SData.length;i++)
         {
             if(typeof pParam.control != 'undefined')
             {
                 //EĞER UPDATE AKTİF İSE KAYITLAR KONTROL EDİLİP UPDATE EDİLİYOR
                 let CtrlData = await GetData(BuildQueryParam(pParam.control,SData[i]),pParam.target);
-                if(typeof CtrlData != 'undefined')
-                {
+                if(typeof CtrlData.err == 'undefined')
+                {   
                     if(CtrlData.length > 0)
                     {
                         //UPDATE
                         if(typeof pParam.update != 'undefined')
                         {
-                            await Execute(BuildQueryParam(pParam.update,SData[i]),pParam.target);
+                            let TmpData = await Execute(BuildQueryParam(pParam.update,SData[i]),pParam.target);
+                            if(typeof TmpData.err != 'undefined')
+                            {
+                                console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Update İşleminde Hata : " + TmpData.err)
+                            }
                         }
                     }
                     else
                     {
                         //INSERT
-                        await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
+                        let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
+                        if(typeof TmpData.err != 'undefined')
+                        {
+                            console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert İşleminde Hata 01 : " + TmpData.err)
+                        }
                     }
                 } 
+                else
+                {
+                    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Get İşleminde Hata 02 : " + CtrlData.err)
+                }
             }
             else
             {
                 //EĞER UPDATE AKTİF DEĞİLSE KAYITLAR SADECE İNSERT EDİLİYOR.KAYIT ÇAKIŞMASINDAN BEN MESUL DEĞİLİM.
-                await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
+                let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
+                if(typeof TmpData.err != 'undefined')
+                {
+                    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert  İşleminde Hata 02: " + TmpData.err)
+                }
             }
         }
+
         console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Aktarımı Bitti.")
         resolve();
     });
@@ -108,9 +131,12 @@ function GetData(pQuery,pConnet)
         {
             if(typeof JSON.parse(Data).err != 'undefined')
             {
-                console.log(JSON.parse(Data).err)
+                resolve(JSON.parse(Data))
             }
-            resolve(JSON.parse(Data).recordset);
+            else
+            {
+                resolve(JSON.parse(Data).recordset);
+            }
         });
     });
 }
@@ -129,9 +155,12 @@ function Execute(pQuery,pConnet)
         {
             if(typeof JSON.parse(Data).err != 'undefined')
             {
-                console.log(JSON.parse(Data).err)
+                resolve(JSON.parse(Data))
             }
-            resolve();
+            else
+            {
+                resolve();
+            }
         });
     });
 }
