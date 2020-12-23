@@ -80,7 +80,7 @@ function _DataTransfer(pParam)
                         if(typeof pParam.update != 'undefined')
                         {
                             let TmpData = await Execute(BuildQueryParam(pParam.update,SData[i]),pParam.target);
-                            if(typeof TmpData.err != 'undefined')
+                            if(typeof TmpData != 'undefined')
                             {
                                 console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Update İşleminde Hata : " + TmpData.err)
                             }
@@ -90,7 +90,7 @@ function _DataTransfer(pParam)
                     {
                         //INSERT
                         let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
-                        if(typeof TmpData.err != 'undefined')
+                        if(typeof TmpData != 'undefined')
                         {
                             console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert İşleminde Hata 01 : " + TmpData.err)
                         }
@@ -105,7 +105,7 @@ function _DataTransfer(pParam)
             {
                 //EĞER UPDATE AKTİF DEĞİLSE KAYITLAR SADECE İNSERT EDİLİYOR.KAYIT ÇAKIŞMASINDAN BEN MESUL DEĞİLİM.
                 let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
-                if(typeof TmpData.err != 'undefined')
+                if(typeof TmpData != 'undefined')
                 {
                     console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert  İşleminde Hata 02: " + TmpData.err)
                 }
