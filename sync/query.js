@@ -1,10 +1,705 @@
 let Query = 
-{        
+{    
+    PosSaleCariHarSelect:
+    {
+        query : "SELECT " +
+                "0 AS cha_DBCno, " +
+                "0 AS cha_SpecRecNo, " +
+                "0 AS cha_iptal, " +
+                "51 AS cha_fileid, " +
+                "0 AS cha_hidden, " +
+                "0 AS cha_kilitli, " +
+                "0 AS cha_degisti, " +
+                "0 AS cha_CheckSum, " +
+                "1 AS cha_create_user, " +
+                "GETDATE() AS cha_create_date, " +
+                "1 AS cha_lastup_user, " +
+                "GETDATE() AS cha_lastup_date, " +
+                "'' AS cha_special1, " +
+                "'' AS cha_special2, " +
+                "'' AS cha_special3, " +
+                "0 AS cha_firmano, " +
+                "0 AS cha_subeno, " +
+                "63 AS cha_evrak_tip, " +
+                "MAX(REF) AS cha_evrakno_seri, " + 
+                "MAX(REF_NO) AS cha_evrakno_sira, " + 
+                "0 AS cha_satir_no, " +
+                "DOC_DATE AS cha_tarihi, " +
+                "0 AS cha_tip, " +
+                "6 AS cha_cinsi, " +
+                "0 AS cha_normal_Iade, " +
+                "0 AS cha_tpoz, " +
+                "0 AS cha_ticaret_turu, " +
+                "'' AS cha_belge_no, " +
+                "DOC_DATE AS cha_belge_tarih, " +
+                "'' AS cha_aciklama, " +
+                "'' AS cha_satici_kodu, " +
+                "'' AS cha_EXIMkodu, " +
+                "'' AS cha_projekodu, " +
+                "'' AS cha_yat_tes_kodu, " +
+                "0 AS cha_cari_cins, " +
+                "MAX(CUSTOMER_CODE) AS cha_kod, " +
+                "MAX(CUSTOMER_CODE) AS cha_ciro_cari_kodu, " +
+                "0 AS cha_d_cins, " +
+                "1 AS cha_d_kur, " +
+                "1 AS cha_altd_kur, " +
+                "0 AS cha_grupno, " +
+                "'' AS cha_srmrkkodu, " +
+                "0 AS cha_kasa_hizmet, " +
+                "'' AS cha_kasa_hizkod, " +
+                "0 AS cha_karsidcinsi, " +
+                "1 AS cha_karsid_kur, " +
+                "0 AS cha_karsidgrupno, " +
+                "'' AS cha_karsisrmrkkodu, " +
+                "0 AS cha_miktari, " +
+                "SUM(AMOUNT) AS cha_meblag, " +
+                "SUM(AMOUNT) AS cha_aratoplam, " +
+                "0 AS cha_vade, " +
+                "0 AS cha_Vade_Farki_Yuz, " +
+                "SUM(DISCOUNT) AS cha_ft_iskonto1, " +
+                "0 AS cha_ft_iskonto2, " +
+                "0 AS cha_ft_iskonto3, " +
+                "0 AS cha_ft_iskonto4, " +
+                "0 AS cha_ft_iskonto5, " +
+                "0 AS cha_ft_iskonto6, " +
+                "0 AS cha_ft_masraf1, " +
+                "0 AS cha_ft_masraf2, " +
+                "0 AS cha_ft_masraf3, " +
+                "0 AS cha_ft_masraf4, " +
+                "0 AS cha_isk_mas1, " +
+                "0 AS cha_isk_mas2, " +
+                "0 AS cha_isk_mas3, " +
+                "0 AS cha_isk_mas4, " +
+                "0 AS cha_isk_mas5, " +
+                "0 AS cha_isk_mas6, " +
+                "0 AS cha_isk_mas7, " +
+                "0 AS cha_isk_mas8, " +
+                "0 AS cha_isk_mas9, " +
+                "0 AS cha_isk_mas10, " +
+                "0 AS cha_sat_iskmas1, " +
+                "0 AS cha_sat_iskmas2, " +
+                "0 AS cha_sat_iskmas3, " +
+                "0 AS cha_sat_iskmas4, " +
+                "0 AS cha_sat_iskmas5, " +
+                "0 AS cha_sat_iskmas6, " +
+                "0 AS cha_sat_iskmas7, " +
+                "0 AS cha_sat_iskmas8, " +
+                "0 AS cha_sat_iskmas9, " +
+                "0 AS cha_sat_iskmas10, " +
+                "0 AS cha_yuvarlama, " +
+                "0 AS cha_StFonPntr, " +
+                "0 AS cha_stopaj, " +
+                "0 AS cha_savsandesfonu, " +
+                "0 AS cha_avansmak_damgapul, " +
+                "0 AS cha_vergipntr, " +
+                "0 AS cha_vergi1, " +
+                "0 AS cha_vergi2, " +
+                "SUM(cha_vergi3) AS cha_vergi3, " +
+                "SUM(cha_vergi4) AS cha_vergi4, " +
+                "0 AS cha_vergi5, " +
+                "0 AS cha_vergi6, " +
+                "0 AS cha_vergi7, " +
+                "0 AS cha_vergi8, " +
+                "0 AS cha_vergi9, " +
+                "0 AS cha_vergi10, " +
+                "0 AS cha_vergisiz_fl, " +
+                "0 AS cha_otvtutari, " +
+                "0 AS cha_otvvergisiz_fl, " +
+                "0 AS cha_oiv_pntr, " +
+                "0 AS cha_oivtutari, " +
+                "0 AS cha_oiv_vergi, " +
+                "0 AS cha_oivergisiz_fl, " +
+                "'12-30-1899' AS cha_fis_tarih, " +
+                "0 AS cha_fis_sirano, " +
+                "'' AS cha_trefno, " +
+                "0 AS cha_sntck_poz, " +
+                "'12-30-1899' AS cha_reftarihi, " +
+                "0 AS cha_istisnakodu, " +
+                "0 AS cha_pos_hareketi, " +
+                "0 AS cha_meblag_ana_doviz_icin_gecersiz_fl, " +
+                "0 AS cha_meblag_alt_doviz_icin_gecersiz_fl, " +
+                "0 AS cha_meblag_orj_doviz_icin_gecersiz_fl, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_sip_uid, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_kirahar_uid, " +
+                "'12-30-1899' AS cha_vardiya_tarihi, " +
+                "0 AS cha_vardiya_no, " +
+                "0 AS cha_vardiya_evrak_ti, " +
+                "0 AS cha_ebelge_turu, " +
+                "0 AS cha_tevkifat_toplam, " +
+                "0 AS cha_ilave_edilecek_kdv1, " +
+                "0 AS cha_ilave_edilecek_kdv2, " +
+                "0 AS cha_ilave_edilecek_kdv3, " +
+                "0 AS cha_ilave_edilecek_kdv4, " +
+                "0 AS cha_ilave_edilecek_kdv5, " +
+                "0 AS cha_ilave_edilecek_kdv6, " +
+                "0 AS cha_ilave_edilecek_kdv7, " +
+                "0 AS cha_ilave_edilecek_kdv8, " +
+                "0 AS cha_ilave_edilecek_kdv9, " +
+                "0 AS cha_ilave_edilecek_kdv10, " +
+                "0 AS cha_e_islem_turu, " +
+                "0 AS cha_fatura_belge_turu, " +
+                "'' AS cha_diger_belge_adi, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_uuid, " +
+                "1 AS cha_adres_no, " +
+                "0 AS cha_vergifon_toplam, " +
+                "'12-30-1899' AS cha_ilk_belge_tarihi, " +
+                "0 AS cha_ilk_belge_doviz_kuru, " +
+                "'' AS cha_HareketGrupKodu1, " +
+                "'' AS cha_HareketGrupKodu2, " +
+                "'' AS cha_HareketGrupKodu3, " +
+                "'' AS cha_ebelgeno_seri, " +
+                "0 AS cha_ebelgeno_sira, " +
+                "'' AS cha_hubid, " +
+                "'' AS cha_hubglbid, " +
+                "'' AS cha_disyazilimid " +
+                "FROM  " +
+                "(SELECT  " +
+                "MAX(REF) AS REF, " +
+                "MAX(REF_NO) AS REF_NO, " +
+                "TYPE AS TYPE, " +
+                "DEPARTMENT AS DEPARTMENT, " +
+                "DOC_DATE AS DOC_DATE, " +
+                "MAX(CUSTOMER_CODE) AS CUSTOMER_CODE, " +
+                "SUM(QUANTITY * PRICE) AS AMOUNT, " +
+                "SUM(DISCOUNT) AS DISCOUNT, " +
+                "CASE WHEN VAT = 5 THEN SUM((QUANTITY * PRICE) - DISCOUNT) * (VAT / 100) ELSE 0 END AS cha_vergi3, " +
+                "CASE WHEN VAT = 10 THEN SUM((QUANTITY * PRICE) - DISCOUNT) * (VAT / 100) ELSE 0 END AS cha_vergi4 " +
+                "FROM POS_SALES WHERE DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) AND TYPE = 0 AND STATUS = 1 " +
+                "GROUP BY VAT,DOC_DATE,DEPARTMENT,TYPE) AS TMP GROUP BY DOC_DATE,DEPARTMENT,TYPE" 
+    },
+    PosSaleStokHarSelect:
+    {
+        query : "SELECT " +
+                "0 AS [sth_DBCno], " +
+                "0 AS [sth_SpecRECno], " +
+                "0 AS [sth_iptal], " +
+                "16 AS [sth_fileid], " +
+                "0 AS [sth_hidden], " +
+                "0 AS [sth_kilitli], " +
+                "0 AS [sth_degisti], " +
+                "0 AS [sth_checksum], " +
+                "1 AS [sth_create_user], " +
+                "GETDATE() AS [sth_create_date], " +
+                "1 AS [sth_lastup_user], " +
+                "GETDATE() AS [sth_lastup_date], " +
+                "(SELECT COUNT(TMS.REF_NO) FROM (SELECT REF_NO FROM POS_SALES AS TMP WHERE TMP.DOC_DATE >= POS.DOC_DATE AND TMP.DOC_DATE <= POS.DOC_DATE AND TMP.TYPE = 0 AND TMP.DEPARTMENT = POS.DEPARTMENT AND TMP.STATUS = 1 GROUP BY REF,REF_NO) AS TMS) AS [sth_special1], " +
+                "'' AS [sth_special2], " +
+                "'' AS [sth_special3], " +
+                "0 AS [sth_firmano], " +
+                "0 AS [sth_subeno], " +
+                "DOC_DATE AS [sth_tarih], " +
+                "CASE WHEN TYPE = 0 OR TYPE = 2 THEN 1 ELSE 0 END AS [sth_tip], " +
+                "0 AS [sth_cins], " +
+                "TYPE AS [sth_normal_iade], " +
+                "CASE WHEN TYPE = 0 OR TYPE = 2 THEN 1 ELSE 13 END AS [sth_evraktip], " +
+                "REF AS [sth_evrakno_seri], " +
+                "CONVERT(INT,CONVERT(NVARCHAR,YEAR(DOC_DATE)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(MONTH(DOC_DATE),''),2)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(DAY(DOC_DATE),''),2))) AS [sth_evrakno_sira], " +
+                "ROW_NUMBER() OVER (PARTITION BY REF,DOC_DATE ORDER BY ITEM_CODE,DOC_DATE) - 1 AS [sth_satirno], " +
+                "'' AS [sth_belge_no], " +
+                "DOC_DATE AS [sth_belge_tarih], " +
+                "ITEM_CODE AS [sth_stok_kod], " +
+                "1 AS [sth_isk_mas1], " +
+                "1 AS [sth_isk_mas2], " +
+                "1 AS [sth_isk_mas3], " +
+                "1 AS [sth_isk_mas4], " +
+                "1 AS [sth_isk_mas5], " +
+                "1 AS [sth_isk_mas6], " +
+                "1 AS [sth_isk_mas7], " +
+                "1 AS [sth_isk_mas8], " +
+                "1 AS [sth_isk_mas9], " +
+                "1 AS [sth_isk_mas10], " +
+                "0 AS [sth_sat_iskmas1], " +
+                "0 AS [sth_sat_iskmas2], " +
+                "0 AS [sth_sat_iskmas3], " +
+                "0 AS [sth_sat_iskmas4], " +
+                "0 AS [sth_sat_iskmas5], " +
+                "0 AS [sth_sat_iskmas6], " +
+                "0 AS [sth_sat_iskmas7], " +
+                "0 AS [sth_sat_iskmas8], " +
+                "0 AS [sth_sat_iskmas9], " +
+                "0 AS [sth_sat_iskmas10], " +
+                "0 AS [sth_pos_satis], " +
+                "0 AS [sth_promosyon_fl], " +
+                "0 AS [sth_cari_cinsi], " +
+                "CUSTOMER_CODE AS [sth_cari_kodu], " +
+                "0 AS [sth_cari_grup_no], " +
+                "'' AS [sth_isemri_gider_kodu], " +
+                "'' AS [sth_plasiyer_kodu], " +
+                "0 AS [sth_har_doviz_cinsi], " +
+                "1 AS[sth_har_doviz_kuru], " +
+                "1 AS [sth_alt_doviz_kuru], " +
+                "0 AS [sth_stok_doviz_cinsi], " +
+                "1 AS [sth_stok_doviz_kuru], " +
+                "SUM(QUANTITY) AS [sth_miktar], " +
+                "SUM(QUANTITY) AS [sth_miktar2], " +
+                "MAX(UNIT) AS [sth_birim_pntr], " +
+                "SUM((CONVERT(FLOAT,QUANTITY) * CONVERT(FLOAT,PRICE)) / ((CONVERT(FLOAT,VAT) / CONVERT(FLOAT,100)) + 1)) AS [sth_tutar], " +
+                "SUM(DISCOUNT) AS [sth_iskonto1], " +
+                "0 AS [sth_iskonto2], " +
+                "0 AS [sth_iskonto3], " +
+                "0 AS [sth_iskonto4], " +
+                "0 AS [sth_iskonto5], " +
+                "0 AS [sth_iskonto6], " +
+                "0 AS [sth_masraf1], " +
+                "0 AS [sth_masraf2], " +
+                "0 AS [sth_masraf3], " +
+                "0 AS [sth_masraf4], " +
+                "CASE WHEN VAT = 5 THEN 3 WHEN VAT = 10 THEN 4 WHEN VAT = 16 THEN 5 WHEN VAT = 20 THEN 6 ELSE 2 END AS [sth_vergi_pntr], " +
+                "SUM((QUANTITY * PRICE) - (CONVERT(FLOAT,QUANTITY) * CONVERT(FLOAT,PRICE)) / ((CONVERT(FLOAT,VAT) / CONVERT(FLOAT,100)) + 1)) AS [sth_vergi], " +
+                "0 AS [sth_masraf_vergi_pntr], " +
+                "0 AS [sth_masraf_vergi], " +
+                "0 AS [sth_netagirlik], " +
+                "0 AS [sth_odeme_op], " +
+                "'' AS [sth_aciklama], " +
+                "'00000000-0000-0000-0000-000000000000' AS [sth_sip_uid], " +
+                "'00000000-0000-0000-0000-000000000000' AS [sth_fat_uid], " +
+                "DEPARTMENT AS [sth_giris_depo_no], " +
+                "DEPARTMENT AS [sth_cikis_depo_no], " +
+                "DOC_DATE AS [sth_malkbl_sevk_tarihi], " +
+                "'' AS [sth_cari_srm_merkezi], " +
+                "'' AS [sth_stok_srm_merkezi], " +
+                "'12-30-1899' AS [sth_fis_tarihi], " +
+                "0 AS [sth_fis_sirano], " +
+                "0 AS [sth_vergisiz_fl], " +
+                "0 AS [sth_maliyet_ana], " +
+                "0 AS [sth_maliyet_alternatif], " +
+                "0 AS [sth_maliyet_orjinal], " +
+                "1 AS [sth_adres_no], " +
+                "'' AS [sth_parti_kodu], " +
+                "0 AS [sth_lot_no], " +
+                "'00000000-0000-0000-0000-000000000000' AS [sth_kons_uid], " +
+                "'' AS [sth_proje_kodu], " +
+                "'' AS [sth_exim_kodu], " +
+                "0 AS [sth_otv_pntr], " +
+                "0 AS [sth_otv_vergi], " +
+                "0 AS [sth_brutagirlik], " +
+                "0 AS [sth_disticaret_turu], " +
+                "0 AS [sth_otvtutari], " +
+                "0 AS [sth_otvvergisiz_fl], " +
+                "0 AS [sth_oiv_pntr], " +
+                "0 AS [sth_oiv_vergi], " +
+                "0 AS [sth_oivvergisiz_fl], " +
+                "0 AS [sth_fiyat_liste_no], " +
+                "0 AS [sth_oivtutari], " +
+                "0 AS [sth_Tevkifat_turu], " +
+                "0 AS [sth_nakliyedeposu], " +
+                "0 AS [sth_nakliyedurumu], " +
+                "'00000000-0000-0000-0000-000000000000' AS [sth_yetkili_uid], " +
+                "0 AS [sth_taxfree_fl], " +
+                "0 AS [sth_ilave_edilecek_kdv], " +
+                "'' AS [sth_ismerkezi_kodu], " +
+                "'' AS [sth_HareketGrupKodu1], " +
+                "'' AS [sth_HareketGrupKodu2], " +
+                "'' AS [sth_HareketGrupKodu3], " +
+                "0 AS [sth_Olcu1], " +
+                "0 AS [sth_Olcu2], " +
+                "0 AS [sth_Olcu3], " +
+                "0 AS [sth_Olcu4], " +
+                "0 AS [sth_Olcu5], " +
+                "0 AS [sth_FormulMiktarNo], " +
+                "0 AS [sth_FormulMiktar], " +
+                "0 AS [sth_eirs_senaryo], " +
+                "0 AS [sth_eirs_tipi], " +
+                "'12-30-1899' AS [sth_teslim_tarihi], " +
+                "0 AS [sth_matbu_fl] " +
+                "FROM POS_SALES AS POS WHERE DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) AND TYPE IN (@TYPE) AND STATUS = 1 " +
+                "GROUP BY DOC_DATE,DEPARTMENT,TYPE,ITEM_CODE,CUSTOMER_CODE,VAT,REF" 
+    },
+    PosPaymentCariHarSelect:
+    {
+        query : "SELECT " +
+                "0 AS cha_DBCno, " + 
+                "0 AS cha_SpecRecNo, " + 
+                "0 AS cha_iptal, " +
+                "51 AS cha_fileid, " +
+                "0 AS cha_hidden, " +
+                "0 AS cha_kilitli, " +
+                "0 AS cha_degisti, " +
+                "0 AS cha_CheckSum, " +
+                "1 AS cha_create_user, " +
+                "GETDATE() AS cha_create_date, " +
+                "1 AS cha_lastup_user, " +
+                "GETDATE() AS cha_lastup_date, " +
+                "'' AS cha_special1, " +
+                "'' AS cha_special2, " +
+                "'' AS cha_special3, " +
+                "0 AS cha_firmano, " +
+                "0 AS cha_subeno, " +
+                "CASE WHEN DOC_TYPE = 0 OR DOC_TYPE = 2 THEN 1 ELSE 64 END AS cha_evrak_tip, " +
+                "REF AS cha_evrakno_seri, " +
+                "CONVERT(INT,CONVERT(NVARCHAR,YEAR(DOC_DATE)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(MONTH(DOC_DATE),''),2)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(DAY(DOC_DATE),''),2))) AS cha_evrakno_sira, " +
+                //"ROW_NUMBER() OVER (PARTITION BY REF,DOC_DATE ORDER BY MAX(CDATE),REF) - 1 AS cha_satir_no, " + 
+                "CASE WHEN TYPE = 0 THEN 0 WHEN TYPE = 1 THEN 1 END AS cha_satir_no, " +
+                "DOC_DATE AS cha_tarihi, " +
+                "CASE WHEN DOC_TYPE = 0 OR DOC_TYPE = 2 THEN 1 ELSE 0 END AS cha_tip, " +
+                "CASE WHEN TYPE = 0 THEN 0 WHEN TYPE = 1 THEN 19 END AS cha_cinsi, " + 
+                "0 AS cha_normal_Iade, " +
+                "0 AS cha_tpoz, " +
+                "0 AS cha_ticaret_turu, " +
+                "'' AS cha_belge_no, " +
+                "DOC_DATE AS cha_belge_tarih, " +
+                "'' AS cha_aciklama, " +
+                "'' AS cha_satici_kodu, " +
+                "'' AS cha_EXIMkodu, " +
+                "'' AS cha_projekodu, " +
+                "'' AS cha_yat_tes_kodu, " +
+                "0 AS cha_cari_cins, " +
+                "MAX(CUSTOMER_CODE) AS cha_kod, " +
+                "'' AS cha_ciro_cari_kodu, " +
+                "0 AS cha_d_cins, " +
+                "1 AS cha_d_kur, " +
+                "1 AS cha_altd_kur, " +
+                "0 AS cha_grupno, " +
+                "'' AS cha_srmrkkodu, " +
+                "CASE WHEN TYPE = 0 THEN 4 WHEN TYPE = 1 THEN 2 END AS cha_kasa_hizmet, " +
+                "CASE WHEN TYPE = 0 THEN 'MAĞAZA NAKİT KASA' WHEN TYPE = 1 THEN 'B01' END AS cha_kasa_hizkod, " +
+                "0 AS cha_karsidcinsi, " +
+                "1 AS cha_karsid_kur, " +
+                "CASE WHEN TYPE = 0 THEN 4 WHEN TYPE = 1 THEN 7 END AS cha_karsidgrupno, " +
+                "'' AS cha_karsisrmrkkodu, " +
+                "0 AS cha_miktari, " +
+                "SUM(AMOUNT) AS cha_meblag, " +
+                "SUM(AMOUNT) AS cha_aratoplam, " +
+                "CONVERT(NVARCHAR,YEAR(DOC_DATE)) + REPLACE(STR(CONVERT(NVARCHAR,MONTH(DOC_DATE)), 2), SPACE(1), '0') + REPLACE(STR(CONVERT(NVARCHAR,DAY(DOC_DATE)), 2), SPACE(1), '0') AS cha_vade, " +
+                "0 AS cha_Vade_Farki_Yuz, " +
+                "0 AS cha_ft_iskonto1, " +
+                "0 AS cha_ft_iskonto2, " +
+                "0 AS cha_ft_iskonto3, " +
+                "0 AS cha_ft_iskonto4, " +
+                "0 AS cha_ft_iskonto5, " +
+                "0 AS cha_ft_iskonto6, " +
+                "0 AS cha_ft_masraf1, " +
+                "0 AS cha_ft_masraf2, " +
+                "0 AS cha_ft_masraf3, " +
+                "0 AS cha_ft_masraf4, " +
+                "0 AS cha_isk_mas1, " +
+                "0 AS cha_isk_mas2, " +
+                "0 AS cha_isk_mas3, " +
+                "0 AS cha_isk_mas4, " +
+                "0 AS cha_isk_mas5, " +
+                "0 AS cha_isk_mas6, " +
+                "0 AS cha_isk_mas7, " +
+                "0 AS cha_isk_mas8, " +
+                "0 AS cha_isk_mas9, " +
+                "0 AS cha_isk_mas10, " +
+                "0 AS cha_sat_iskmas1, " +
+                "0 AS cha_sat_iskmas2, " +
+                "0 AS cha_sat_iskmas3, " +
+                "0 AS cha_sat_iskmas4, " +
+                "0 AS cha_sat_iskmas5, " +
+                "0 AS cha_sat_iskmas6, " +
+                "0 AS cha_sat_iskmas7, " +
+                "0 AS cha_sat_iskmas8, " +
+                "0 AS cha_sat_iskmas9, " +
+                "0 AS cha_sat_iskmas10, " +
+                "0 AS cha_yuvarlama, " +
+                "0 AS cha_StFonPntr, " +
+                "0 AS cha_stopaj, " +
+                "0 AS cha_savsandesfonu, " +
+                "0 AS cha_avansmak_damgapul, " +
+                "0 AS cha_vergipntr, " +
+                "0 AS cha_vergi1, " +
+                "0 AS cha_vergi2, " +
+                "0 AS cha_vergi3, " +
+                "0 AS cha_vergi4, " +
+                "0 AS cha_vergi5, " +
+                "0 AS cha_vergi6, " +
+                "0 AS cha_vergi7, " +
+                "0 AS cha_vergi8, " +
+                "0 AS cha_vergi9, " +
+                "0 AS cha_vergi10, " +
+                "0 AS cha_vergisiz_fl, " +
+                "0 AS cha_otvtutari, " +
+                "0 AS cha_otvvergisiz_fl, " +
+                "0 AS cha_oiv_pntr, " +
+                "0 AS cha_oivtutari, " +
+                "0 AS cha_oiv_vergi, " +
+                "0 AS cha_oivergisiz_fl, " +
+                "'12-30-1899' AS cha_fis_tarih, " +
+                "0 AS cha_fis_sirano, " +
+                "CASE WHEN TYPE = 0 THEN '' WHEN TYPE = 1 THEN REF + CONVERT(NVARCHAR(15),DOC_DATE,112) END AS cha_trefno, " +
+                "CASE WHEN TYPE = 0 THEN 0 WHEN TYPE = 1 THEN 2 END AS cha_sntck_poz, " +
+                "'12-30-1899' AS cha_reftarihi, " +
+                "0 AS cha_istisnakodu, " +
+                "0 AS cha_pos_hareketi, " +
+                "0 AS cha_meblag_ana_doviz_icin_gecersiz_fl, " +
+                "0 AS cha_meblag_alt_doviz_icin_gecersiz_fl, " +
+                "0 AS cha_meblag_orj_doviz_icin_gecersiz_fl, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_sip_uid, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_kirahar_uid, " +
+                "'12-30-1899' AS cha_vardiya_tarihi, " +
+                "0 AS cha_vardiya_no, " +
+                "0 AS cha_vardiya_evrak_ti, " +
+                "0 AS cha_ebelge_turu, " +
+                "0 AS cha_tevkifat_toplam, " +
+                "0 AS cha_ilave_edilecek_kdv1, " +
+                "0 AS cha_ilave_edilecek_kdv2, " +
+                "0 AS cha_ilave_edilecek_kdv3, " +
+                "0 AS cha_ilave_edilecek_kdv4, " +
+                "0 AS cha_ilave_edilecek_kdv5, " +
+                "0 AS cha_ilave_edilecek_kdv6, " +
+                "0 AS cha_ilave_edilecek_kdv7, " +
+                "0 AS cha_ilave_edilecek_kdv8, " +
+                "0 AS cha_ilave_edilecek_kdv9, " +
+                "0 AS cha_ilave_edilecek_kdv10, " +
+                "0 AS cha_e_islem_turu, " +
+                "0 AS cha_fatura_belge_turu, " +
+                "'' AS cha_diger_belge_adi, " +
+                "'00000000-0000-0000-0000-000000000000' AS cha_uuid, " +
+                "1 AS cha_adres_no, " +
+                "0 AS cha_vergifon_toplam, " +
+                "'12-30-1899' AS cha_ilk_belge_tarihi, " +
+                "0 AS cha_ilk_belge_doviz_kuru, " +
+                "'' AS cha_HareketGrupKodu1, " +
+                "'' AS cha_HareketGrupKodu2, " +
+                "'' AS cha_HareketGrupKodu3, " +
+                "'' AS cha_ebelgeno_seri, " +
+                "0 AS cha_ebelgeno_sira, " +
+                "'' AS cha_hubid, " +
+                "'' AS cha_hubglbid, " +
+                "'' AS cha_disyazilimid " +
+                "FROM POS_PAYMENT " +
+                "WHERE DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) AND DOC_TYPE IN (@DOC_TYPE) AND STATUS = 1 " +
+                "GROUP BY DEPARTMENT,TYPE,DOC_TYPE,DOC_DATE,CASE_CODE,REF" 
+    },
+    PosPaymentOdemeEmirSelect:
+    {
+        query : " SELECT  " +
+                " 0	AS sck_DBCno, " +
+                " 0	AS sck_SpecRECno, " +
+                " 0 AS sck_iptal, " +
+                " 54 AS sck_fileid, " +
+                " 0 AS sck_hidden, " +
+                " 0 AS sck_kilitli, " +
+                " 0 AS sck_degisti, " +
+                " 0 AS sck_checksum, " +
+                " 1 AS sck_create_user, " +
+                " GETDATE() AS sck_create_date, " +
+                " 1	AS sck_lastup_user, " +
+                " GETDATE() AS sck_lastup_date, " +
+                " '' AS sck_special1, " +
+                " '' AS sck_special2, " +
+                " '' AS sck_special3, " +
+                " 0 AS sck_firmano, " +
+                " 0 AS sck_subeno, " +
+                " 6 AS sck_tip, " +
+                " REF + CONVERT(NVARCHAR(15),DOC_DATE,112) AS sck_refno, " +
+                " '' AS sck_bankano, " +
+                " 'M1001' AS sck_borclu, " +
+                " ''	AS sck_vdaire_no, " +
+                " DOC_DATE AS sck_vade, " +
+                " SUM(AMOUNT) AS sck_tutar, " +
+                " 0	AS sck_doviz, " +
+                " 0 AS sck_odenen, " +
+                " 0 AS sck_degerleme_islendi, " +
+                " '' AS sck_banka_adres1, " +
+                " '' AS sck_sube_adres2, " +
+                " '' AS sck_borclu_tel, " +
+                " '' AS sck_hesapno_sehir, " +
+                " '' AS sck_no, " +
+                " '1899-12-30 00:00:00.000' AS sck_duzen_tarih, " +
+                " 0	AS sck_sahip_cari_cins, " +
+                " 'M1001' AS sck_sahip_cari_kodu, " +
+                " 0 AS sck_sahip_cari_grupno, " +
+                " 2 AS sck_nerede_cari_cins, " +
+                " CASE WHEN TYPE = 0 THEN 'MAĞAZA NAKİT KASA' WHEN TYPE = 1 THEN 'B01' END AS sck_nerede_cari_kodu, " +
+                " 7 AS sck_nerede_cari_grupno, " +
+                " DOC_DATE AS sck_ilk_hareket_tarihi, " +
+                " REF AS sck_ilk_evrak_seri, " +
+                " CONVERT(INT,CONVERT(NVARCHAR,YEAR(DOC_DATE)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(MONTH(DOC_DATE),''),2)) + CONVERT(NVARCHAR,RIGHT('0'+ISNULL(DAY(DOC_DATE),''),2))) AS sck_ilk_evrak_sira_no, " +
+                " 0 AS sck_ilk_evrak_satir_no, " +
+                " DOC_DATE AS sck_son_hareket_tarihi, " +
+                " 1 AS sck_doviz_kur, " +
+                " 2 AS sck_sonpoz, " +
+                " 0 AS sck_imza, " +
+                " '' AS sck_srmmrk, " +
+                " '' AS sck_kesideyeri, " +
+                " '' AS Sck_TCMB_Banka_kodu, " +
+                " '' AS Sck_TCMB_Sube_kodu, " +
+                " '' AS Sck_TCMB_il_kodu, " +
+                " 0  AS SckTasra_fl, " +
+                " '' AS sck_projekodu, " +
+                " 0 AS sck_masraf1, " +
+                " 0 AS sck_masraf1_isleme, " +
+                " 0 AS sck_masraf2, " +
+                " 0 AS sck_masraf2_isleme, " +
+                " 0 AS sck_odul_katkisi_tutari, " +
+                " 0 AS sck_servis_komisyon_tutari, " +
+                " 0 AS sck_erken_odeme_faiz_tutari, " +
+                " 0 AS sck_odul_katkisi_tutari_islendi_fl, " +
+                " 0 AS sck_servis_komisyon_tutari_islendi_fl, " +
+                " 0 AS sck_erken_odeme_faiz_tutari_islendi_fl, " +
+                " 0 AS sck_kredi_karti_tipi, " +
+                " 0 AS sck_taksit_sayisi, " +
+                " '' AS sck_kacinci_taksit, " +
+                " '' AS sck_uye_isyeri_no, " +
+                " '' AS sck_kredi_karti_no, " +
+                " '' AS sck_provizyon_kodu " +
+                " FROM POS_PAYMENT " +
+                " WHERE DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) AND DOC_TYPE IN (@DOC_TYPE) AND STATUS = 1 AND TYPE = 1 " +
+                " GROUP BY DEPARTMENT,TYPE,DOC_TYPE,DOC_DATE,CASE_CODE,REF "
+    },
+    OdemeEmirInsert: 
+    {
+        query : "INSERT INTO [dbo].[ODEME_EMIRLERI] " +
+            "([sck_DBCno]  " +
+            ",[sck_SpecRECno]  " +
+            ",[sck_iptal]  " +
+            ",[sck_fileid]  " +
+            ",[sck_hidden]  " +
+            ",[sck_kilitli]  " +
+            ",[sck_degisti]  " +
+            ",[sck_checksum]  " +
+            ",[sck_create_user]  " +
+            ",[sck_create_date]  " +
+            ",[sck_lastup_user]  " +
+            ",[sck_lastup_date]  " +
+            ",[sck_special1]  " +
+            ",[sck_special2]  " +
+            ",[sck_special3]  " +
+            ",[sck_firmano]  " +
+            ",[sck_subeno]  " +
+            ",[sck_tip]  " +
+            ",[sck_refno]  " +
+            ",[sck_bankano]  " +
+            ",[sck_borclu]  " +
+            ",[sck_vdaire_no]  " +
+            ",[sck_vade]  " +
+            ",[sck_tutar]  " +
+            ",[sck_doviz]  " +
+            ",[sck_odenen]  " +
+            ",[sck_degerleme_islendi]  " +
+            ",[sck_banka_adres1]  " +
+            ",[sck_sube_adres2]  " +
+            ",[sck_borclu_tel]  " +
+            ",[sck_hesapno_sehir]  " +
+            ",[sck_no]  " +
+            ",[sck_duzen_tarih]  " +
+            ",[sck_sahip_cari_cins]  " +
+            ",[sck_sahip_cari_kodu]  " +
+            ",[sck_sahip_cari_grupno]  " +
+            ",[sck_nerede_cari_cins]  " +
+            ",[sck_nerede_cari_kodu]  " +
+            ",[sck_nerede_cari_grupno]  " +
+            ",[sck_ilk_hareket_tarihi]  " +
+            ",[sck_ilk_evrak_seri]  " +
+            ",[sck_ilk_evrak_sira_no]  " +
+            ",[sck_ilk_evrak_satir_no]  " +
+            ",[sck_son_hareket_tarihi]  " +
+            ",[sck_doviz_kur]  " +
+            ",[sck_sonpoz]  " +
+            ",[sck_imza]  " +
+            ",[sck_srmmrk]  " +
+            ",[sck_kesideyeri]  " +
+            ",[Sck_TCMB_Banka_kodu]  " +
+            ",[Sck_TCMB_Sube_kodu]  " +
+            ",[Sck_TCMB_il_kodu]  " +
+            ",[SckTasra_fl]  " +
+            ",[sck_projekodu]  " +
+            ",[sck_masraf1]  " +
+            ",[sck_masraf1_isleme]  " +
+            ",[sck_masraf2]  " +
+            ",[sck_masraf2_isleme]  " +
+            ",[sck_odul_katkisi_tutari]  " +
+            ",[sck_servis_komisyon_tutari]  " +
+            ",[sck_erken_odeme_faiz_tutari]  " +
+            ",[sck_odul_katkisi_tutari_islendi_fl]  " +
+            ",[sck_servis_komisyon_tutari_islendi_fl]  " +
+            ",[sck_erken_odeme_faiz_tutari_islendi_fl]  " +
+            ",[sck_kredi_karti_tipi]  " +
+            ",[sck_taksit_sayisi]  " +
+            ",[sck_kacinci_taksit]  " +
+            ",[sck_uye_isyeri_no]  " +
+            ",[sck_kredi_karti_no]  " +
+            ",[sck_provizyon_kodu] " +
+            ") VALUES (  " +
+            "@sck_DBCno  " +
+            ",0 " +
+            ",@sck_iptal " +
+            ",@sck_fileid  " +
+            ",@sck_hidden " +
+            ",@sck_kilitli  " +
+            ",@sck_degisti  " +
+            ",0  " +
+            ",@sck_create_user  " +
+            ",GETDATE()  " +
+            ",@sck_lastup_user " +
+            ",GETDATE() " +
+            ",@sck_special1 " +
+            ",@sck_special2  " +
+            ",@sck_special3 " +
+            ",@sck_firmano  " +
+            ",@sck_subeno  " +
+            ",@sck_tip  " +
+            ",@sck_refno " +
+            ",@sck_bankano  " +
+            ",@sck_borclu " +
+            ",@sck_vdaire_no " +
+            ",@sck_vade " +
+            ",@sck_tutar " +
+            ",@sck_doviz " +
+            ",@sck_odenen " +
+            ",@sck_degerleme_islendi " +
+            ",@sck_banka_adres1  " +
+            ",@sck_sube_adres2  " +
+            ",@sck_borclu_tel " +
+            ",@sck_hesapno_sehir  " +
+            ",@sck_no " +
+            ",@sck_duzen_tarih  " +
+            ",@sck_sahip_cari_cins " +
+            ",@sck_sahip_cari_kodu " +
+            ",@sck_sahip_cari_grupno  " +
+            ",@sck_nerede_cari_cins " +
+            ",@sck_nerede_cari_kodu " +
+            ",@sck_nerede_cari_grupno  " +
+            ",@sck_ilk_hareket_tarihi " +
+            ",@sck_ilk_evrak_seri  " +
+            ",@sck_ilk_evrak_sira_no  " +
+            ",@sck_ilk_evrak_satir_no " +
+            ",@sck_son_hareket_tarihi " +
+            ",@sck_doviz_kur  " +
+            ",@sck_sonpoz " +
+            ",@sck_imza " +
+            ",@sck_srmmrk " +
+            ",@sck_kesideyeri  " +
+            ",@Sck_TCMB_Banka_kodu " +
+            ",@Sck_TCMB_Sube_kodu  " +
+            ",@Sck_TCMB_il_kodu " +
+            ",@SckTasra_fl " +
+            ",@sck_projekodu " +
+            ",@sck_masraf1  " +
+            ",@sck_masraf1_isleme " +
+            ",@sck_masraf2  " +
+            ",@sck_masraf2_isleme " +
+            ",@sck_odul_katkisi_tutari " +
+            ",@sck_servis_komisyon_tutari  " +
+            ",@sck_erken_odeme_faiz_tutari  " +
+            ",@sck_odul_katkisi_tutari_islendi_fl " +
+            ",@sck_servis_komisyon_tutari_islendi_fl " +
+            ",@sck_erken_odeme_faiz_tutari_islendi_fl " +
+            ",@sck_kredi_karti_tipi  " +
+            ",@sck_taksit_sayisi  " +
+            ",0 " +
+            ",@sck_uye_isyeri_no " +
+            ",@sck_kredi_karti_no " +
+            ",@sck_provizyon_kodu " +
+            ") " ,
+        param : 
+        ['sck_DBCno:int','sck_iptal:bit','sck_fileid:int','sck_hidden:bit','sck_kilitli:bit','sck_degisti:bit',
+        'sck_create_user:int','sck_lastup_user:int','sck_special1:string|4','sck_special2:string|4','sck_special3:string|4','sck_firmano:int','sck_subeno:int',
+        'sck_tip:int','sck_refno:string|25','sck_bankano:string|25','sck_borclu:string|50','sck_vdaire_no:string|40','sck_vade:date','sck_tutar:float','sck_doviz:int',
+        'sck_odenen:float','sck_degerleme_islendi:int','sck_banka_adres1:string|50','sck_sube_adres2:string|50','sck_borclu_tel:string|15','sck_hesapno_sehir:string|30',
+        'sck_no:string|25','sck_duzen_tarih:date','sck_sahip_cari_cins:int','sck_sahip_cari_kodu:string|25','sck_sahip_cari_grupno:int','sck_nerede_cari_cins:int','sck_nerede_cari_kodu:string|25','sck_nerede_cari_grupno:int','sck_ilk_hareket_tarihi:date',
+        'sck_ilk_evrak_seri:string|25','sck_ilk_evrak_sira_no:int','sck_ilk_evrak_satir_no:int','sck_son_hareket_tarihi:date','sck_doviz_kur:float','sck_sonpoz:int','sck_imza:int','sck_srmmrk:string|25','sck_kesideyeri:string|14','Sck_TCMB_Banka_kodu:string|4','Sck_TCMB_Sube_kodu:string|8',
+        'Sck_TCMB_il_kodu:string|3','SckTasra_fl:bit','sck_projekodu:string|25','sck_masraf1:float','sck_masraf1_isleme:int','sck_masraf2:float','sck_masraf2_isleme:int',
+        'sck_odul_katkisi_tutari:float','sck_servis_komisyon_tutari:float','sck_erken_odeme_faiz_tutari:float','sck_odul_katkisi_tutari_islendi_fl:bit',
+        'sck_servis_komisyon_tutari_islendi_fl:bit','sck_erken_odeme_faiz_tutari_islendi_fl:bit','sck_kredi_karti_tipi:int','sck_taksit_sayisi:int',
+        'sck_uye_isyeri_no:string|25','sck_kredi_karti_no:string|16','sck_provizyon_kodu:string|10']
+    },
     CariHarInsert: 
     {
         query : "INSERT INTO [dbo].[CARI_HESAP_HAREKETLERI] ( " +
-                " [cha_Guid] " +
-                ",[cha_DBCno] " + 
+                " [cha_DBCno] " + 
                 ",[cha_SpecRecNo] " +
                 ",[cha_iptal] " +
                 ",[cha_fileid] " +
@@ -154,8 +849,7 @@ let Query =
                 ",[cha_hubglbid] " +
                 ",[cha_disyazilimid] " +
                 ") VALUES ( " +
-                " @cha_Guid " +
-                ",@cha_DBCno " +
+                " @cha_DBCno " +
                 ",@cha_SpecRecNo " +
                 ",@cha_iptal " +
                 ",@cha_fileid " +
@@ -305,31 +999,30 @@ let Query =
                 ",@cha_hubglbid " +
                 ",@cha_disyazilimid " +
                 ")",
-        param : ['cha_Guid:string|50','cha_DBCno:int','cha_SpecRecNo:int','cha_iptal:bit','cha_fileid:int','cha_hidden:bit','cha_kilitli:bit','cha_degisti:bit','cha_CheckSum:int',
-                 'cha_create_user:int','cha_lastup_user:int','cha_special1:string|4','cha_special2:string|4','cha_special3:string|4','cha_firmano:int','cha_subeno:int','cha_evrak_tip:int',
-                 'cha_evrakno_seri:string|20','cha_evrakno_sira:int','cha_satir_no:int','cha_tarihi:date','cha_tip:int','cha_cinsi:int','cha_normal_Iade:int','cha_tpoz:int',
-                 'cha_ticaret_turu:int','cha_belge_no:string|50','cha_belge_tarih:date','cha_aciklama:string|40','cha_satici_kodu:string|25','cha_EXIMkodu:string|25','cha_projekodu:string|25','cha_yat_tes_kodu:string|25',
-                 'cha_cari_cins:int','cha_kod:string|25','cha_ciro_cari_kodu:string|25','cha_d_cins:int','cha_d_kur:float','cha_altd_kur:float','cha_grupno:int','cha_srmrkkodu:string|25','cha_kasa_hizmet:int',
-                 'cha_kasa_hizkod:string|25','cha_karsidcinsi:int','cha_karsid_kur:float','cha_karsidgrupno:int','cha_karsisrmrkkodu:string|25','cha_miktari:float','cha_meblag:float','cha_aratoplam:float',
-                 'cha_vade:int','cha_Vade_Farki_Yuz:float','cha_ft_iskonto1:float','cha_ft_iskonto2:float','cha_ft_iskonto3:float','cha_ft_iskonto4:float','cha_ft_iskonto5:float','cha_ft_iskonto6:float',
-                 'cha_ft_masraf1:float','cha_ft_masraf2:float','cha_ft_masraf3:float','cha_ft_masraf4:float','cha_isk_mas1:int','cha_isk_mas2:int','cha_isk_mas3:int','cha_isk_mas4:int','cha_isk_mas5:int',
-                 'cha_isk_mas6:int','cha_isk_mas7:int','cha_isk_mas8:int','cha_isk_mas9:int','cha_isk_mas10:int','cha_sat_iskmas1:bit','cha_sat_iskmas2:bit','cha_sat_iskmas3:bit','cha_sat_iskmas4:bit',
-                 'cha_sat_iskmas5:bit','cha_sat_iskmas6:bit','cha_sat_iskmas7:bit','cha_sat_iskmas8:bit','cha_sat_iskmas9:bit','cha_sat_iskmas10:bit','cha_yuvarlama:float','cha_StFonPntr:int','cha_stopaj:float',
-                 'cha_savsandesfonu:float','cha_avansmak_damgapul:float','cha_vergipntr:int','cha_vergi1:float','cha_vergi2:float','cha_vergi3:float','cha_vergi4:float','cha_vergi5:float','cha_vergi6:float',
-                 'cha_vergi7:float','cha_vergi8:float','cha_vergi9:float','cha_vergi10:float','cha_vergisiz_fl:bit','cha_otvtutari:float','cha_otvvergisiz_fl:bit','cha_oiv_pntr:int','cha_oivtutari:float',
-                 'cha_oiv_vergi:float','cha_oivergisiz_fl:bit','cha_fis_tarih:date','cha_fis_sirano:int','cha_trefno:string|25','cha_sntck_poz:int','cha_reftarihi:date','cha_istisnakodu:int','cha_pos_hareketi:int',
-                 'cha_meblag_ana_doviz_icin_gecersiz_fl:bit','cha_meblag_alt_doviz_icin_gecersiz_fl:bit','cha_meblag_orj_doviz_icin_gecersiz_fl:bit','cha_sip_uid:string|50','cha_kirahar_uid:string|50','cha_vardiya_tarihi:date',
-                 'cha_vardiya_no:int','cha_vardiya_evrak_ti:int','cha_ebelge_turu:int','cha_tevkifat_toplam:float','cha_ilave_edilecek_kdv1:float','cha_ilave_edilecek_kdv2:float','cha_ilave_edilecek_kdv3:float',
-                 'cha_ilave_edilecek_kdv4:float','cha_ilave_edilecek_kdv5:float','cha_ilave_edilecek_kdv6:float','cha_ilave_edilecek_kdv7:float','cha_ilave_edilecek_kdv8:float','cha_ilave_edilecek_kdv9:float',
-                 'cha_ilave_edilecek_kdv10:float','cha_e_islem_turu:int','cha_fatura_belge_turu:int','cha_diger_belge_adi:string|50','cha_uuid:string|40','cha_adres_no:int','cha_vergifon_toplam:float','cha_ilk_belge_tarihi:date',
-                 'cha_ilk_belge_doviz_kuru:float','cha_HareketGrupKodu1:string|25','cha_HareketGrupKodu2:string|25','cha_HareketGrupKodu3:string|25','cha_ebelgeno_seri:string|20','cha_ebelgeno_sira:int','cha_hubid:string|50',
-                 'cha_hubglbid:string|50','cha_disyazilimid:string|50']
+        param : ['cha_DBCno:int','cha_SpecRecNo:int','cha_iptal:bit','cha_fileid:int','cha_hidden:bit','cha_kilitli:bit','cha_degisti:bit','cha_CheckSum:int',
+                'cha_create_user:int','cha_lastup_user:int','cha_special1:string|4','cha_special2:string|4','cha_special3:string|4','cha_firmano:int','cha_subeno:int','cha_evrak_tip:int',
+                'cha_evrakno_seri:string|20','cha_evrakno_sira:int','cha_satir_no:int','cha_tarihi:date','cha_tip:int','cha_cinsi:int','cha_normal_Iade:int','cha_tpoz:int',
+                'cha_ticaret_turu:int','cha_belge_no:string|50','cha_belge_tarih:date','cha_aciklama:string|40','cha_satici_kodu:string|25','cha_EXIMkodu:string|25','cha_projekodu:string|25','cha_yat_tes_kodu:string|25',
+                'cha_cari_cins:int','cha_kod:string|25','cha_ciro_cari_kodu:string|25','cha_d_cins:int','cha_d_kur:float','cha_altd_kur:float','cha_grupno:int','cha_srmrkkodu:string|25','cha_kasa_hizmet:int',
+                'cha_kasa_hizkod:string|25','cha_karsidcinsi:int','cha_karsid_kur:float','cha_karsidgrupno:int','cha_karsisrmrkkodu:string|25','cha_miktari:float','cha_meblag:float','cha_aratoplam:float',
+                'cha_vade:int','cha_Vade_Farki_Yuz:float','cha_ft_iskonto1:float','cha_ft_iskonto2:float','cha_ft_iskonto3:float','cha_ft_iskonto4:float','cha_ft_iskonto5:float','cha_ft_iskonto6:float',
+                'cha_ft_masraf1:float','cha_ft_masraf2:float','cha_ft_masraf3:float','cha_ft_masraf4:float','cha_isk_mas1:int','cha_isk_mas2:int','cha_isk_mas3:int','cha_isk_mas4:int','cha_isk_mas5:int',
+                'cha_isk_mas6:int','cha_isk_mas7:int','cha_isk_mas8:int','cha_isk_mas9:int','cha_isk_mas10:int','cha_sat_iskmas1:bit','cha_sat_iskmas2:bit','cha_sat_iskmas3:bit','cha_sat_iskmas4:bit',
+                'cha_sat_iskmas5:bit','cha_sat_iskmas6:bit','cha_sat_iskmas7:bit','cha_sat_iskmas8:bit','cha_sat_iskmas9:bit','cha_sat_iskmas10:bit','cha_yuvarlama:float','cha_StFonPntr:int','cha_stopaj:float',
+                'cha_savsandesfonu:float','cha_avansmak_damgapul:float','cha_vergipntr:int','cha_vergi1:float','cha_vergi2:float','cha_vergi3:float','cha_vergi4:float','cha_vergi5:float','cha_vergi6:float',
+                'cha_vergi7:float','cha_vergi8:float','cha_vergi9:float','cha_vergi10:float','cha_vergisiz_fl:bit','cha_otvtutari:float','cha_otvvergisiz_fl:bit','cha_oiv_pntr:int','cha_oivtutari:float',
+                'cha_oiv_vergi:float','cha_oivergisiz_fl:bit','cha_fis_tarih:date','cha_fis_sirano:int','cha_trefno:string|25','cha_sntck_poz:int','cha_reftarihi:date','cha_istisnakodu:int','cha_pos_hareketi:int',
+                'cha_meblag_ana_doviz_icin_gecersiz_fl:bit','cha_meblag_alt_doviz_icin_gecersiz_fl:bit','cha_meblag_orj_doviz_icin_gecersiz_fl:bit','cha_sip_uid:string|50','cha_kirahar_uid:string|50','cha_vardiya_tarihi:date',
+                'cha_vardiya_no:int','cha_vardiya_evrak_ti:int','cha_ebelge_turu:int','cha_tevkifat_toplam:float','cha_ilave_edilecek_kdv1:float','cha_ilave_edilecek_kdv2:float','cha_ilave_edilecek_kdv3:float',
+                'cha_ilave_edilecek_kdv4:float','cha_ilave_edilecek_kdv5:float','cha_ilave_edilecek_kdv6:float','cha_ilave_edilecek_kdv7:float','cha_ilave_edilecek_kdv8:float','cha_ilave_edilecek_kdv9:float',
+                'cha_ilave_edilecek_kdv10:float','cha_e_islem_turu:int','cha_fatura_belge_turu:int','cha_diger_belge_adi:string|50','cha_uuid:string|40','cha_adres_no:int','cha_vergifon_toplam:float','cha_ilk_belge_tarihi:date',
+                'cha_ilk_belge_doviz_kuru:float','cha_HareketGrupKodu1:string|25','cha_HareketGrupKodu2:string|25','cha_HareketGrupKodu3:string|25','cha_ebelgeno_seri:string|20','cha_ebelgeno_sira:int','cha_hubid:string|50',
+                'cha_hubglbid:string|50','cha_disyazilimid:string|50']
     },
     StokHarInsert: 
     {
         query : "INSERT INTO [dbo].[STOK_HAREKETLERI] ( " +
-                " [sth_Guid] " +
-                ",[sth_DBCno] " +
+                " [sth_DBCno] " +
                 ",[sth_SpecRECno] " +
                 ",[sth_iptal] " +
                 ",[sth_fileid] " +
@@ -462,8 +1155,7 @@ let Query =
                 ",[sth_teslim_tarihi] " +
                 ",[sth_matbu_fl] " +
                 ") VALUES ( " +
-                " @sth_Guid " +
-                ",@sth_DBCno " +
+                " @sth_DBCno " +
                 ",@sth_SpecRECno " +
                 ",@sth_iptal " +
                 ",@sth_fileid " +
@@ -487,7 +1179,7 @@ let Query =
                 ",@sth_evraktip " +
                 ",@sth_evrakno_seri " +
                 ",@sth_evrakno_sira " +
-                ",@sth_satirno " +
+                ",(SELECT ISNULL(MAX(sth_satirno),-1) + 1 FROM STOK_HAREKETLERI WHERE sth_evrakno_seri = @sth_evrakno_seri AND sth_evrakno_sira = @sth_evrakno_sira) " +
                 ",@sth_belge_no " +
                 ",@sth_belge_tarih " +
                 ",@sth_stok_kod " +
@@ -596,9 +1288,9 @@ let Query =
                 ",@sth_teslim_tarihi " +
                 ",@sth_matbu_fl " +
                 ")",
-        param : ['sth_Guid:string|50','sth_DBCno:int','sth_SpecRECno:int','sth_iptal:bit','sth_fileid:int','sth_hidden:bit','sth_kilitli:bit','sth_degisti:bit','sth_checksum:int',
+        param : ['sth_DBCno:int','sth_SpecRECno:int','sth_iptal:bit','sth_fileid:int','sth_hidden:bit','sth_kilitli:bit','sth_degisti:bit','sth_checksum:int',
                 'sth_create_user:int','sth_lastup_user:int','sth_special1:string|4','sth_special2:string|4','sth_special3:string|4','sth_firmano:int','sth_subeno:int','sth_tarih:date',
-                'sth_tip:int','sth_cins:int','sth_normal_iade:int','sth_evraktip:int','sth_evrakno_seri:string|20','sth_evrakno_sira:int','sth_satirno:int','sth_belge_no:string|50',
+                'sth_tip:int','sth_cins:int','sth_normal_iade:int','sth_evraktip:int','sth_evrakno_seri:string|20','sth_evrakno_sira:int','sth_belge_no:string|50',
                 'sth_belge_tarih:date','sth_stok_kod:string|25','sth_isk_mas1:int','sth_isk_mas2:int','sth_isk_mas3:int','sth_isk_mas4:int','sth_isk_mas5:int','sth_isk_mas6:int',
                 'sth_isk_mas7:int','sth_isk_mas8:int','sth_isk_mas9:int','sth_isk_mas10:int','sth_sat_iskmas1:bit','sth_sat_iskmas2:bit','sth_sat_iskmas3:bit','sth_sat_iskmas4:bit',
                 'sth_sat_iskmas5:bit','sth_sat_iskmas6:bit','sth_sat_iskmas7:bit','sth_sat_iskmas8:bit','sth_sat_iskmas9:bit','sth_sat_iskmas10:bit','sth_pos_satis:int','sth_promosyon_fl:bit',
@@ -613,634 +1305,406 @@ let Query =
                 'sth_nakliyedeposu:int','sth_nakliyedurumu:int','sth_yetkili_uid:string|50','sth_taxfree_fl:bit','sth_ilave_edilecek_kdv:float','sth_ismerkezi_kodu:string|25',
                 'sth_HareketGrupKodu1:string|25','sth_HareketGrupKodu2:string|25','sth_HareketGrupKodu3:string|25','sth_Olcu1:float','sth_Olcu2:float','sth_Olcu3:float','sth_Olcu4:float',
                 'sth_Olcu5:float','sth_FormulMiktarNo:int','sth_FormulMiktar:float','sth_eirs_senaryo:int','sth_eirs_tipi:int','sth_teslim_tarihi:date','sth_matbu_fl:bit']
-    } ,
-    StoklarInsert :
+    },
+    ItemsInsert :
     {
-            query: "INSERT INTO [dbo].[STOKLAR] " +
-           "([sto_Guid] " +
-           ",[sto_DBCno] " +
-           ",[sto_SpecRECno] " +
-           ",[sto_iptal] " +
-           ",[sto_fileid] " +
-           ",[sto_hidden] " +
-           ",[sto_kilitli] " +
-           ",[sto_degisti] " +
-           ",[sto_checksum] " +
-           ",[sto_create_user] " +
-           ",[sto_create_date] " +
-           ",[sto_lastup_user] " +
-           ",[sto_lastup_date] " +
-           ",[sto_special1] " +
-           ",[sto_special2] " +
-           ",[sto_special3] " +
-           ",[sto_kod] " +
-           ",[sto_isim] " +
-           ",[sto_kisa_ismi] " +
-           ",[sto_yabanci_isim] " +
-           ",[sto_sat_cari_kod] " +
-           ",[sto_cins] " +
-           ",[sto_doviz_cinsi] " +
-           ",[sto_detay_takip] " +
-           ",[sto_birim1_ad] " +
-           ",[sto_birim1_katsayi] " +
-           ",[sto_birim1_agirlik] " +
-           ",[sto_birim1_en] " +
-           ",[sto_birim1_boy] " +
-           ",[sto_birim1_yukseklik] " +
-           ",[sto_birim1_dara] " +
-           ",[sto_birim2_ad] " +
-           ",[sto_birim2_katsayi] " +
-           ",[sto_birim2_agirlik] " +
-           ",[sto_birim2_en] " +
-           ",[sto_birim2_boy] " +
-           ",[sto_birim2_yukseklik] " +
-           ",[sto_birim2_dara] " +
-           ",[sto_birim3_ad] " +
-           ",[sto_birim3_katsayi] " +
-           ",[sto_birim3_agirlik] " +
-           ",[sto_birim3_en] " +
-           ",[sto_birim3_boy] " +
-           ",[sto_birim3_yukseklik] " +
-           ",[sto_birim3_dara] " +
-           ",[sto_birim4_ad] " +
-           ",[sto_birim4_katsayi] " +
-           ",[sto_birim4_agirlik] " +
-           ",[sto_birim4_en] " +
-           ",[sto_birim4_boy] " +
-           ",[sto_birim4_yukseklik] " +
-           ",[sto_birim4_dara] " +
-           ",[sto_muh_kod] " +
-           ",[sto_muh_Iade_kod] " +
-           ",[sto_muh_sat_muh_kod] " +
-           ",[sto_muh_satIadmuhkod] " +
-           ",[sto_muh_sat_isk_kod] " +
-           ",[sto_muh_aIiskmuhkod] " +
-           ",[sto_muh_satmalmuhkod] " +
-           ",[sto_yurtdisi_satmuhk] " +
-           ",[sto_ilavemasmuhkod] " +
-           ",[sto_yatirimtesmuhkod] " +
-           ",[sto_depsatmuhkod] " +
-           ",[sto_depsatmalmuhkod] " +
-           ",[sto_bagortsatmuhkod] " +
-           ",[sto_bagortsatIadmuhkod] " +
-           ",[sto_bagortsatIskmuhkod] " +
-           ",[sto_satfiyfarkmuhkod] " +
-           ",[sto_yurtdisisatmalmuhkod] " +
-           ",[sto_bagortsatmalmuhkod] " +
-           ",[sto_sifirbedsatmalmuhkod] " +
-           ",[sto_ihrackayitlisatismuhkod] " +
-           ",[sto_ihrackayitlisatismaliyetimuhkod] " +
-           ",[sto_karorani] " +
-           ",[sto_min_stok] " +
-           ",[sto_siparis_stok] " +
-           ",[sto_max_stok] " +
-           ",[sto_ver_sip_birim] " +
-           ",[sto_al_sip_birim] " +
-           ",[sto_siparis_sure] " +
-           ",[sto_perakende_vergi] " +
-           ",[sto_toptan_vergi] " +
-           ",[sto_yer_kod] " +
-           ",[sto_elk_etk_tipi] " +
-           ",[sto_raf_etiketli] " +
-           ",[sto_etiket_bas] " +
-           ",[sto_satis_dursun] " +
-           ",[sto_siparis_dursun] " +
-           ",[sto_malkabul_dursun] " +
-           ",[sto_malkabul_gun1] " +
-           ",[sto_malkabul_gun2] " +
-           ",[sto_malkabul_gun3] " +
-           ",[sto_malkabul_gun4] " +
-           ",[sto_malkabul_gun5] " +
-           ",[sto_malkabul_gun6] " +
-           ",[sto_malkabul_gun7] " +
-           ",[sto_siparis_gun1] " +
-           ",[sto_siparis_gun2] " +
-           ",[sto_siparis_gun3] " +
-           ",[sto_siparis_gun4] " +
-           ",[sto_siparis_gun5] " +
-           ",[sto_siparis_gun6] " +
-           ",[sto_siparis_gun7] " +
-           ",[sto_iskon_yapilamaz] " +
-           ",[sto_tasfiyede] " +
-           ",[sto_alt_grup_no] " +
-           ",[sto_kategori_kodu] " +
-           ",[sto_urun_sorkod] " +
-           ",[sto_altgrup_kod] " +
-           ",[sto_anagrup_kod] " +
-           ",[sto_uretici_kodu] " +
-           ",[sto_sektor_kodu] " +
-           ",[sto_reyon_kodu] " +
-           ",[sto_muhgrup_kodu] " +
-           ",[sto_ambalaj_kodu] " +
-           ",[sto_marka_kodu] " +
-           ",[sto_beden_kodu] " +
-           ",[sto_renk_kodu] " +
-           ",[sto_model_kodu] " +
-           ",[sto_sezon_kodu] " +
-           ",[sto_hammadde_kodu] " +
-           ",[sto_prim_kodu] " +
-           ",[sto_kalkon_kodu] " +
-           ",[sto_paket_kodu] " +
-           ",[sto_pozisyonbayrak_kodu] " +
-           ",[sto_mkod_artik] " +
-           ",[sto_kasa_tarti_fl] " +
-           ",[sto_bedenli_takip] " +
-           ",[sto_renkDetayli] " +
-           ",[sto_miktarondalikli_fl] " +
-           ",[sto_pasif_fl] " +
-           ",[sto_eksiyedusebilir_fl] " +
-           ",[sto_GtipNo] " +
-           ",[sto_puan] " +
-           ",[sto_komisyon_hzmkodu] " +
-           ",[sto_komisyon_orani] " +
-           ",[sto_otvuygulama] " +
-           ",[sto_otvtutar] " +
-           ",[sto_otvliste] " +
-           ",[sto_otvbirimi] " +
-           ",[sto_prim_orani] " +
-           ",[sto_garanti_sure] " +
-           ",[sto_garanti_sure_tipi] " +
-           ",[sto_iplik_Ne_no] " +
-           ",[sto_standartmaliyet] " +
-           ",[sto_kanban_kasa_miktari] " +
-           ",[sto_oivuygulama] " +
-           ",[sto_zraporu_stoku_fl] " +
-           ",[sto_maxiskonto_orani] " +
-           ",[sto_detay_takibinde_depo_kontrolu_fl] " +
-           ",[sto_tamamlayici_kodu] " +
-           ",[sto_oto_barkod_acma_sekli] " +
-           ",[sto_oto_barkod_kod_yapisi] " +
-           ",[sto_KasaIskontoOrani] " +
-           ",[sto_KasaIskontoTutari] " +
-           ",[sto_gelirpayi] " +
-           ",[sto_oivtutar] " +
-           ",[sto_oivturu] " +
-           ",[sto_giderkodu] " +
-           ",[sto_oivvergipntr] " +
-           ",[sto_Tevkifat_turu] " +
-           ",[sto_SKT_fl] " +
-           ",[sto_terazi_SKT] " +
-           ",[sto_RafOmru] " +
-           ",[sto_KasadaTaksitlenebilir_fl] " +
-           ",[sto_ufrsfark_kod] " +
-           ",[sto_iade_ufrsfark_kod] " +
-           ",[sto_yurticisat_ufrsfark_kod] " +
-           ",[sto_satiade_ufrsfark_kod] " +
-           ",[sto_satisk_ufrsfark_kod] " +
-           ",[sto_alisk_ufrsfark_kod] " +
-           ",[sto_satmal_ufrsfark_kod] " +
-           ",[sto_yurtdisisat_ufrsfark_kod] " +
-           ",[sto_ilavemas_ufrsfark_kod] " +
-           ",[sto_yatirimtes_ufrsfark_kod] " +
-           ",[sto_depsat_ufrsfark_kod] " +
-           ",[sto_depsatmal_ufrsfark_kod] " +
-           ",[sto_bagortsat_ufrsfark_kod] " +
-           ",[sto_bagortsatiade_ufrsfark_kod] " +
-           ",[sto_bagortsatisk_ufrsfark_kod] " +
-           ",[sto_satfiyfark_ufrsfark_kod] " +
-           ",[sto_yurtdisisatmal_ufrsfark_kod] " +
-           ",[sto_bagortsatmal_ufrsfark_kod] " +
-           ",[sto_sifirbedsatmal_ufrsfark_kod] " +
-           ",[sto_uretimmaliyet_ufrsfark_kod] " +
-           ",[sto_uretimkapasite_ufrsfark_kod] " +
-           ",[sto_degerdusuklugu_ufrs_kod] " +
-           ",[sto_halrusumyudesi] " +
-           ",[sto_webe_gonderilecek_fl] " +
-           ",[sto_min_stok_belirleme_gun] " +
-           ",[sto_sip_stok_belirleme_gun] " +
-           ",[sto_max_stok_belirleme_gun] " +
-           ",[sto_sev_bel_opr_degerlendime_fl] " +
-           ",[sto_otv_tevkifat_turu] " +
-           ",[sto_kay_plan_degerlendir] " +
-           ",[sto_CRM_sistemine_aktar_fl] " +
-           ",[sto_yerli_yabanci] " +
-           ",[sto_mensei] " +
-           ",[sto_oto_parti_lot_kod_fl] " +
-           ",[sto_efat_sinif_kodu] " +
-           ",[sto_efat_sinif_listesi] " +
-           ",[sto_efat_sinif_versiyonu] " +
-           ",[sto_utssisteminegonderilsin_fl] " +
-           ",[sto_posetbeyannamekonusu_fl] " +
-           ",[sto_STT_oncesi_kaldirma] " +
-           ",[sto_toplam_rafomru] " +
-           ",[sto_fiyat_kasada_belirlenir_fl] " +
-           ",[sto_franchise_siparis_dursun] " +
-           ",[sto_GEKAP] " +
-           ",[sto_GEKAP_birim] " +
-           ",[sto_resim_url] " +
-           ",[sto_GEKAP_depozitoonaykodu] " +
-           ") VALUES ( " +
-           " @sto_Guid                   --<sto_Guid, uniqueidentifier,> \n " +
-           ",@sto_DBCno                   --<sto_DBCno, smallint,> \n " +
-           ",@sto_SpecRECno                   --<sto_SpecRECno, int,> \n " +
-           ",@sto_iptal                   --<sto_iptal, bit,> \n " +
-           ",@sto_fileid                   --<sto_fileid, smallint,> \n " +
-           ",@sto_hidden                   --<sto_hidden, bit,> \n " +
-           ",@sto_kilitli                   --<sto_kilitli, bit,> \n " +
-           ",@sto_degisti                   --<sto_degisti, bit,> \n " +
-           ",@sto_checksum                   --<sto_checksum, int,> \n " +
-           ",@sto_create_user                   --<sto_create_user, smallint,> \n " +
-           ",GETDATE()                   --<sto_create_date, datetime,> \n " +
-           ",@sto_lastup_user                   --<sto_lastup_user, smallint,> \n " +
-           ",GETDATE()                     --<sto_lastup_date, datetime,> \n " +
-           ",@sto_special1                   --<sto_special1, nvarchar(4),> \n " +
-           ",@sto_special2                   --<sto_special2, nvarchar(4),> \n " +
-           ",@sto_special3                   --<sto_special3, nvarchar(4),> \n " +
-           ",@sto_kod                   --<sto_kod, nvarchar(25),> \n " +
-           ",@sto_isim                   --<sto_isim, nvarchar(127),> \n " +
-           ",@sto_kisa_ismi                   --<sto_kisa_ismi, nvarchar(50),> \n " +
-           ",@sto_yabanci_isim                   --<sto_yabanci_isim, nvarchar(127),> \n " +
-           ",@sto_sat_cari_kod                   --<sto_sat_cari_kod, nvarchar(25),> \n " +
-           ",@sto_cins                   --<sto_cins, tinyint,> \n " +
-           ",@sto_doviz_cinsi                   --<sto_doviz_cinsi, tinyint,> \n " +
-           ",@sto_detay_takip                   --<sto_detay_takip, tinyint,> \n " +
-           ",@sto_birim1_ad                   --<sto_birim1_ad, nvarchar(10),> \n " +
-           ",@sto_birim1_katsayi                   --<sto_birim1_katsayi, float,> \n " +
-           ",@sto_birim1_agirlik                   --<sto_birim1_agirlik, float,> \n " +
-           ",@sto_birim1_en                   --<sto_birim1_en, float,> \n " +
-           ",@sto_birim1_boy                   --<sto_birim1_boy, float,> \n " +
-           ",@sto_birim1_yukseklik                   --<sto_birim1_yukseklik, float,> \n " +
-           ",@sto_birim1_dara                   --<sto_birim1_dara, float,> \n " +
-           ",@sto_birim2_ad                   --<sto_birim2_ad, nvarchar(10),> \n " +
-           ",@sto_birim2_katsayi                   --<sto_birim2_katsayi, float,> \n " +
-           ",@sto_birim2_agirlik                   --<sto_birim2_agirlik, float,> \n " +
-           ",@sto_birim2_en                   --<sto_birim2_en, float,> \n " +
-           ",@sto_birim2_boy                   --<sto_birim2_boy, float,> \n " +
-           ",@sto_birim2_yukseklik                   --<sto_birim2_yukseklik, float,> \n " +
-           ",@sto_birim2_dara                   --<sto_birim2_dara, float,> \n " +
-           ",@sto_birim3_ad                   --<sto_birim3_ad, nvarchar(10),> \n " +
-           ",@sto_birim3_katsayi                   --<sto_birim3_katsayi, float,> \n " +
-           ",@sto_birim3_agirlik                   --<sto_birim3_agirlik, float,> \n " +
-           ",@sto_birim3_en                   --<sto_birim3_en, float,> \n " +
-           ",@sto_birim3_boy                   --<sto_birim3_boy, float,> \n " +
-           ",@sto_birim3_yukseklik                   --<sto_birim3_yukseklik, float,> \n " +
-           ",@sto_birim3_dara                   --<sto_birim3_dara, float,> \n " +
-           ",@sto_birim4_ad                   --<sto_birim4_ad, nvarchar(10),> \n " +
-           ",@sto_birim4_katsayi                   --<sto_birim4_katsayi, float,> \n " +
-           ",@sto_birim4_agirlik                   --<sto_birim4_agirlik, float,> \n " +
-           ",@sto_birim4_en                   --<sto_birim4_en, float,> \n " +
-           ",@sto_birim4_boy                   --<sto_birim4_boy, float,> \n " +
-           ",@sto_birim4_yukseklik                   --<sto_birim4_yukseklik, float,> \n " +
-           ",@sto_birim4_dara                   --<sto_birim4_dara, float,> \n " +
-           ",@sto_muh_kod                   --<sto_muh_kod, nvarchar(40),> \n " +
-           ",@sto_muh_Iade_kod                   --<sto_muh_Iade_kod, nvarchar(40),> \n " +
-           ",@sto_muh_sat_muh_kod                   --<sto_muh_sat_muh_kod, nvarchar(40),> \n " +
-           ",@sto_muh_satIadmuhkod                   --<sto_muh_satIadmuhkod, nvarchar(40),> \n " +
-           ",@sto_muh_sat_isk_kod                   --<sto_muh_sat_isk_kod, nvarchar(40),> \n " +
-           ",@sto_muh_aIiskmuhkod                   --<sto_muh_aIiskmuhkod, nvarchar(40),> \n " +
-           ",@sto_muh_satmalmuhkod                   --<sto_muh_satmalmuhkod, nvarchar(40),> \n " +
-           ",@sto_yurtdisi_satmuhk                   --<sto_yurtdisi_satmuhk, nvarchar(40),> \n " +
-           ",@sto_ilavemasmuhkod                   --<sto_ilavemasmuhkod, nvarchar(40),> \n " +
-           ",@sto_yatirimtesmuhkod                   --<sto_yatirimtesmuhkod, nvarchar(40),> \n " +
-           ",@sto_depsatmuhkod                   --<sto_depsatmuhkod, nvarchar(40),> \n " +
-           ",@sto_depsatmalmuhkod                   --<sto_depsatmalmuhkod, nvarchar(40),> \n " +
-           ",@sto_bagortsatmuhkod                   --<sto_bagortsatmuhkod, nvarchar(40),> \n " +
-           ",@sto_bagortsatIadmuhkod                   --<sto_bagortsatIadmuhkod, nvarchar(40),> \n " +
-           ",@sto_bagortsatIskmuhkod                   --<sto_bagortsatIskmuhkod, nvarchar(40),> \n " +
-           ",@sto_satfiyfarkmuhkod                   --<sto_satfiyfarkmuhkod, nvarchar(40),> \n " +
-           ",@sto_yurtdisisatmalmuhkod                   --<sto_yurtdisisatmalmuhkod, nvarchar(40),> \n " +
-           ",@sto_bagortsatmalmuhkod                   --<sto_bagortsatmalmuhkod, nvarchar(40),> \n " +
-           ",@sto_sifirbedsatmalmuhkod                   --<sto_sifirbedsatmalmuhkod, nvarchar(40),> \n " +
-           ",@sto_ihrackayitlisatismuhkod                   --<sto_ihrackayitlisatismuhkod, nvarchar(40),> \n " +
-           ",@sto_ihrackayitlisatismaliyetimuhkod                   --<sto_ihrackayitlisatismaliyetimuhkod, nvarchar(40),> \n " +
-           ",@sto_karorani                   --<sto_karorani, float,> \n " +
-           ",@sto_min_stok                   --<sto_min_stok, float,> \n " +
-           ",@sto_siparis_stok                   --<sto_siparis_stok, float,> \n " +
-           ",@sto_max_stok                   --<sto_max_stok, float,> \n " +
-           ",@sto_ver_sip_birim                   --<sto_ver_sip_birim, tinyint,> \n " +
-           ",@sto_al_sip_birim                   --<sto_al_sip_birim, tinyint,> \n " +
-           ",@sto_siparis_sure                   --<sto_siparis_sure, smallint,> \n " +
-           ",@sto_perakende_vergi                   --<sto_perakende_vergi, tinyint,> \n " +
-           ",@sto_toptan_vergi                   --<sto_toptan_vergi, tinyint,> \n " +
-           ",@sto_yer_kod                   --<sto_yer_kod, nvarchar(25),> \n " +
-           ",@sto_elk_etk_tipi                   --<sto_elk_etk_tipi, tinyint,> \n " +
-           ",@sto_raf_etiketli                   --<sto_raf_etiketli, tinyint,> \n " +
-           ",@sto_etiket_bas                   --<sto_etiket_bas, tinyint,> \n " +
-           ",@sto_satis_dursun                   --<sto_satis_dursun, tinyint,> \n " +
-           ",@sto_siparis_dursun                   --<sto_siparis_dursun, tinyint,> \n " +
-           ",@sto_malkabul_dursun                   --<sto_malkabul_dursun, tinyint,> \n " +
-           ",@sto_malkabul_gun1                   --<sto_malkabul_gun1, bit,> \n " +
-           ",@sto_malkabul_gun2                   --<sto_malkabul_gun2, bit,> \n " +
-           ",@sto_malkabul_gun3                   --<sto_malkabul_gun3, bit,> \n " +
-           ",@sto_malkabul_gun4                   --<sto_malkabul_gun4, bit,> \n " +
-           ",@sto_malkabul_gun5                   --<sto_malkabul_gun5, bit,> \n " +
-           ",@sto_malkabul_gun6                   --<sto_malkabul_gun6, bit,> \n " +
-           ",@sto_malkabul_gun7                   --<sto_malkabul_gun7, bit,> \n " +
-           ",@sto_siparis_gun1                   --<sto_siparis_gun1, bit,> \n " +
-           ",@sto_siparis_gun2                   --<sto_siparis_gun2, bit,> \n " +
-           ",@sto_siparis_gun3                   --<sto_siparis_gun3, bit,> \n " +
-           ",@sto_siparis_gun4                   --<sto_siparis_gun4, bit,> \n " +
-           ",@sto_siparis_gun5                   --<sto_siparis_gun5, bit,> \n " +
-           ",@sto_siparis_gun6                   --<sto_siparis_gun6, bit,> \n " +
-           ",@sto_siparis_gun7                   --<sto_siparis_gun7, bit,> \n " +
-           ",@sto_iskon_yapilamaz                   --<sto_iskon_yapilamaz, bit,> \n " +
-           ",@sto_tasfiyede                   --<sto_tasfiyede, bit,> \n " +
-           ",@sto_alt_grup_no                   --<sto_alt_grup_no, smallint,> \n " +
-           ",@sto_kategori_kodu                   --<sto_kategori_kodu, nvarchar(25),> \n " +
-           ",@sto_urun_sorkod                   --<sto_urun_sorkod, nvarchar(25),> \n " +
-           ",@sto_altgrup_kod                   --<sto_altgrup_kod, nvarchar(25),> \n " +
-           ",@sto_anagrup_kod                   --<sto_anagrup_kod, nvarchar(25),> \n " +
-           ",@sto_uretici_kodu                   --<sto_uretici_kodu, nvarchar(25),> \n " +
-           ",@sto_sektor_kodu                   --<sto_sektor_kodu, nvarchar(25),> \n " +
-           ",@sto_reyon_kodu                   --<sto_reyon_kodu, nvarchar(25),> \n " +
-           ",@sto_muhgrup_kodu                   --<sto_muhgrup_kodu, nvarchar(25),> \n " +
-           ",@sto_ambalaj_kodu                   --<sto_ambalaj_kodu, nvarchar(25),> \n " +
-           ",@sto_marka_kodu                   --<sto_marka_kodu, nvarchar(25),> \n " +
-           ",@sto_beden_kodu                   --<sto_beden_kodu, nvarchar(25),> \n " +
-           ",@sto_renk_kodu                   --<sto_renk_kodu, nvarchar(25),> \n " +
-           ",@sto_model_kodu                   --<sto_model_kodu, nvarchar(25),> \n " +
-           ",@sto_sezon_kodu                   --<sto_sezon_kodu, nvarchar(25),> \n " +
-           ",@sto_hammadde_kodu                   --<sto_hammadde_kodu, nvarchar(25),> \n " +
-           ",@sto_prim_kodu                   --<sto_prim_kodu, nvarchar(25),> \n " +
-           ",@sto_kalkon_kodu                   --<sto_kalkon_kodu, nvarchar(25),> \n " +
-           ",@sto_paket_kodu                   --<sto_paket_kodu, nvarchar(25),> \n " +
-           ",@sto_pozisyonbayrak_kodu                   --<sto_pozisyonbayrak_kodu, nvarchar(25),> \n " +
-           ",@sto_mkod_artik                   --<sto_mkod_artik, nvarchar(10),> \n " +
-           ",@sto_kasa_tarti_fl                   --<sto_kasa_tarti_fl, bit,> \n " +
-           ",@sto_bedenli_takip                   --<sto_bedenli_takip, bit,> \n " +
-           ",@sto_renkDetayli                   --<sto_renkDetayli, bit,> \n " +
-           ",@sto_miktarondalikli_fl                   --<sto_miktarondalikli_fl, bit,> \n " +
-           ",@sto_pasif_fl                   --<sto_pasif_fl, bit,> \n " +
-           ",@sto_eksiyedusebilir_fl                   --<sto_eksiyedusebilir_fl, bit,> \n " +
-           ",@sto_GtipNo                   --<sto_GtipNo, nvarchar(25),> \n " +
-           ",@sto_puan                   --<sto_puan, float,> \n " +
-           ",@sto_komisyon_hzmkodu                   --<sto_komisyon_hzmkodu, nvarchar(25),> \n " +
-           ",@sto_komisyon_orani                   --<sto_komisyon_orani, float,> \n " +
-           ",@sto_otvuygulama                   --<sto_otvuygulama, tinyint,> \n " +
-           ",@sto_otvtutar                   --<sto_otvtutar, float,> \n " +
-           ",@sto_otvliste                   --<sto_otvliste, tinyint,> \n " +
-           ",@sto_otvbirimi                   --<sto_otvbirimi, tinyint,> \n " +
-           ",@sto_prim_orani                   --<sto_prim_orani, float,> \n " +
-           ",@sto_garanti_sure                   --<sto_garanti_sure, smallint,> \n " +
-           ",@sto_garanti_sure_tipi                   --<sto_garanti_sure_tipi, tinyint,> \n " +
-           ",@sto_iplik_Ne_no                   --<sto_iplik_Ne_no, float,> \n " +
-           ",@sto_standartmaliyet                   --<sto_standartmaliyet, float,> \n " +
-           ",@sto_kanban_kasa_miktari                   --<sto_kanban_kasa_miktari, float,> \n " +
-           ",@sto_oivuygulama                   --<sto_oivuygulama, tinyint,> \n " +
-           ",@sto_zraporu_stoku_fl                   --<sto_zraporu_stoku_fl, bit,> \n " +
-           ",@sto_maxiskonto_orani                   --<sto_maxiskonto_orani, float,> \n " +
-           ",@sto_detay_takibinde_depo_kontrolu_fl                   --<sto_detay_takibinde_depo_kontrolu_fl, bit,> \n " +
-           ",@sto_tamamlayici_kodu                   --<sto_tamamlayici_kodu, nvarchar(25),> \n " +
-           ",@sto_oto_barkod_acma_sekli                   --<sto_oto_barkod_acma_sekli, tinyint,> \n " +
-           ",@sto_oto_barkod_kod_yapisi                   --<sto_oto_barkod_kod_yapisi, [dbo.[barkod_str,> \n " +
-           ",@sto_KasaIskontoOrani                   --<sto_KasaIskontoOrani, float,> \n " +
-           ",@sto_KasaIskontoTutari                   --<sto_KasaIskontoTutari, float,> \n " +
-           ",@sto_gelirpayi                   --<sto_gelirpayi, float,> \n " +
-           ",@sto_oivtutar                   --<sto_oivtutar, float,> \n " +
-           ",@sto_oivturu                   --<sto_oivturu, tinyint,> \n " +
-           ",@sto_giderkodu                   --<sto_giderkodu, nvarchar(25),> \n " +
-           ",@sto_oivvergipntr                   --<sto_oivvergipntr, tinyint,> \n " +
-           ",@sto_Tevkifat_turu                   --<sto_Tevkifat_turu, tinyint,> \n " +
-           ",@sto_SKT_fl                   --<sto_SKT_fl, bit,> \n " +
-           ",@sto_terazi_SKT                   --<sto_terazi_SKT, smallint,> \n " +
-           ",@sto_RafOmru                   --<sto_RafOmru, smallint,> \n " +
-           ",@sto_KasadaTaksitlenebilir_fl                   --<sto_KasadaTaksitlenebilir_fl, bit,> \n " +
-           ",@sto_ufrsfark_kod                   --<sto_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_iade_ufrsfark_kod                   --<sto_iade_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_yurticisat_ufrsfark_kod                   --<sto_yurticisat_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_satiade_ufrsfark_kod                   --<sto_satiade_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_satisk_ufrsfark_kod                   --<sto_satisk_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_alisk_ufrsfark_kod                   --<sto_alisk_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_satmal_ufrsfark_kod                   --<sto_satmal_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_yurtdisisat_ufrsfark_kod                   --<sto_yurtdisisat_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_ilavemas_ufrsfark_kod                   --<sto_ilavemas_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_yatirimtes_ufrsfark_kod                   --<sto_yatirimtes_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_depsat_ufrsfark_kod                   --<sto_depsat_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_depsatmal_ufrsfark_kod                   --<sto_depsatmal_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_bagortsat_ufrsfark_kod                   --<sto_bagortsat_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_bagortsatiade_ufrsfark_kod                   --<sto_bagortsatiade_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_bagortsatisk_ufrsfark_kod                   --<sto_bagortsatisk_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_satfiyfark_ufrsfark_kod                   --<sto_satfiyfark_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_yurtdisisatmal_ufrsfark_kod                   --<sto_yurtdisisatmal_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_bagortsatmal_ufrsfark_kod                   --<sto_bagortsatmal_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_sifirbedsatmal_ufrsfark_kod                   --<sto_sifirbedsatmal_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_uretimmaliyet_ufrsfark_kod                   --<sto_uretimmaliyet_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_uretimkapasite_ufrsfark_kod                   --<sto_uretimkapasite_ufrsfark_kod, nvarchar(40),> \n " +
-           ",@sto_degerdusuklugu_ufrs_kod                   --<sto_degerdusuklugu_ufrs_kod, nvarchar(40),> \n " +
-           ",@sto_halrusumyudesi                   --<sto_halrusumyudesi, float,> \n " +
-           ",@sto_webe_gonderilecek_fl                   --<sto_webe_gonderilecek_fl, bit,> \n " +
-           ",@sto_min_stok_belirleme_gun                   --<sto_min_stok_belirleme_gun, smallint,> \n " +
-           ",@sto_sip_stok_belirleme_gun                   --<sto_sip_stok_belirleme_gun, smallint,> \n " +
-           ",@sto_max_stok_belirleme_gun                   --<sto_max_stok_belirleme_gun, smallint,> \n " +
-           ",@sto_sev_bel_opr_degerlendime_fl                   --<sto_sev_bel_opr_degerlendime_fl, bit,> \n " +
-           ",@sto_otv_tevkifat_turu                   --<sto_otv_tevkifat_turu, tinyint,> \n " +
-           ",@sto_kay_plan_degerlendir                   --<sto_kay_plan_degerlendir, tinyint,> \n " +
-           ",@sto_CRM_sistemine_aktar_fl                   --<sto_CRM_sistemine_aktar_fl, bit,> \n " +
-           ",@sto_yerli_yabanci                   --<sto_yerli_yabanci, tinyint,> \n " +
-           ",@sto_mensei                   --<sto_mensei, nvarchar(30),> \n " +
-           ",@sto_oto_parti_lot_kod_fl                   --<sto_oto_parti_lot_kod_fl, bit,> \n " +
-           ",@sto_efat_sinif_kodu                   --<sto_efat_sinif_kodu, nvarchar(20),> \n " +
-           ",@sto_efat_sinif_listesi                   --<sto_efat_sinif_listesi, nvarchar(15),> \n " +
-           ",@sto_efat_sinif_versiyonu                   --<sto_efat_sinif_versiyonu, nvarchar(15),> \n " +
-           ",@sto_utssisteminegonderilsin_fl                   --<sto_utssisteminegonderilsin_fl, bit,> \n " +
-           ",@sto_posetbeyannamekonusu_fl                   --<sto_posetbeyannamekonusu_fl, bit,> \n " +
-           ",@sto_STT_oncesi_kaldirma                   --<sto_STT_oncesi_kaldirma, smallint,> \n " +
-           ",@sto_toplam_rafomru                   --<sto_toplam_rafomru, smallint,> \n " +
-           ",@sto_fiyat_kasada_belirlenir_fl                   --<sto_fiyat_kasada_belirlenir_fl, bit,> \n " +
-           ",@sto_franchise_siparis_dursun                   --<sto_franchise_siparis_dursun, tinyint,> \n " +
-           ",@sto_GEKAP                   --<sto_GEKAP, nvarchar(5),> \n " +
-           ",@sto_GEKAP_birim                   --<sto_GEKAP_birim, tinyint,> \n " +
-           ",@sto_resim_url                   --<sto_resim_url, nvarchar(127),> \n " +
-           ",@sto_GEKAP_depozitoonaykodu                   --<sto_GEKAP_depozitoonaykodu, nvarchar(10),> \n " +
-           " )",
-           param : ['sto_Guid:string|50','sto_DBCno:int','sto_SpecRECno:int','sto_iptal:bit','sto_fileid:int','sto_hidden:bit','sto_kilitli:bit','sto_degisti:bit',
-                'sto_checksum:int','sto_create_user:int','sto_lastup_user:int'
-                ,'sto_special1:string|4','sto_special2:string|4','sto_special3:string|4','sto_kod:string|50','sto_isim:string|127','sto_kisa_ismi:string|50','sto_yabanci_isim:string|127'
-                ,'sto_sat_cari_kod:string|50','sto_cins:int','sto_doviz_cinsi:int','sto_detay_takip:int','sto_birim1_ad:string|50','sto_birim1_katsayi:float'
-                ,'sto_birim1_agirlik:float','sto_birim1_en:float','sto_birim1_boy:float','sto_birim1_yukseklik:float','sto_birim1_dara:float','sto_birim2_ad:string|50'
-                ,'sto_birim2_katsayi:float','sto_birim2_agirlik:float','sto_birim2_en:float','sto_birim2_boy:float','sto_birim2_yukseklik:float'
-                ,'sto_birim2_dara:float','sto_birim3_ad:string|50','sto_birim3_katsayi:float','sto_birim3_agirlik:float','sto_birim3_en:float','sto_birim3_boy:float'
-                ,'sto_birim3_yukseklik:float','sto_birim3_dara:float','sto_birim4_ad:string|50','sto_birim4_katsayi:float','sto_birim4_agirlik:float'
-                ,'sto_birim4_en:float','sto_birim4_boy:float','sto_birim4_yukseklik:float','sto_birim4_dara:float','sto_muh_kod:string|50','sto_muh_Iade_kod:string|50'
-                ,'sto_muh_sat_muh_kod:string|50','sto_muh_satIadmuhkod:string|50','sto_muh_sat_isk_kod:string|50','sto_muh_aIiskmuhkod:string|50','sto_muh_satmalmuhkod:string|50'
-                ,'sto_yurtdisi_satmuhk:string|50','sto_ilavemasmuhkod:string|50','sto_yatirimtesmuhkod:string|50','sto_depsatmuhkod:string|50','sto_depsatmalmuhkod:string|50'
-                ,'sto_bagortsatmuhkod:string|50','sto_bagortsatIadmuhkod:string|50','sto_bagortsatIskmuhkod:string|50','sto_satfiyfarkmuhkod:string|50','sto_yurtdisisatmalmuhkod:string|50'
-                ,'sto_bagortsatmalmuhkod:string|50','sto_sifirbedsatmalmuhkod:string|50','sto_ihrackayitlisatismuhkod:string|50','sto_ihrackayitlisatismaliyetimuhkod:string|50'
-                ,'sto_karorani:float','sto_min_stok:float','sto_siparis_stok:float','sto_max_stok:float','sto_ver_sip_birim:int','sto_al_sip_birim:int','sto_siparis_sure:int'
-                ,'sto_perakende_vergi:int','sto_toptan_vergi:int','sto_yer_kod:string|50','sto_elk_etk_tipi:int','sto_raf_etiketli:int','sto_etiket_bas:int','sto_satis_dursun:int'
-                ,'sto_siparis_dursun:int','sto_malkabul_dursun:int','sto_malkabul_gun1:bit','sto_malkabul_gun2:bit','sto_malkabul_gun3:bit','sto_malkabul_gun4:bit'
-                ,'sto_malkabul_gun5:bit','sto_malkabul_gun6:bit','sto_malkabul_gun7:bit','sto_siparis_gun1:bit','sto_siparis_gun2:bit','sto_siparis_gun3:bit','sto_siparis_gun4:bit'
-                ,'sto_siparis_gun5:bit','sto_siparis_gun6:bit','sto_siparis_gun7:bit','sto_iskon_yapilamaz:bit','sto_tasfiyede:bit','sto_alt_grup_no:int','sto_kategori_kodu:string|50'
-                ,'sto_urun_sorkod:string|50','sto_altgrup_kod:string|50','sto_anagrup_kod:string|50','sto_uretici_kodu:string|50','sto_sektor_kodu:string|50','sto_reyon_kodu:string|50','sto_muhgrup_kodu:string|50'
-                ,'sto_ambalaj_kodu:string|50','sto_marka_kodu:string|50','sto_beden_kodu:string|50','sto_renk_kodu:string|50','sto_model_kodu:string|50','sto_sezon_kodu:string|50','sto_hammadde_kodu:string|50'
-                ,'sto_prim_kodu:string|50','sto_kalkon_kodu:string|50','sto_paket_kodu:string|50','sto_pozisyonbayrak_kodu:string|50','sto_mkod_artik:string|50','sto_kasa_tarti_fl:bit'
-                ,'sto_bedenli_takip:bit','sto_renkDetayli:bit','sto_miktarondalikli_fl:bit','sto_pasif_fl:bit','sto_eksiyedusebilir_fl:bit','sto_GtipNo:string|50'
-                ,'sto_puan:string|50','sto_komisyon_hzmkodu:string|50','sto_komisyon_orani:float','sto_otvuygulama:int','sto_otvtutar:float','sto_otvliste:int','sto_otvbirimi:int'
-                ,'sto_prim_orani:float','sto_garanti_sure:int','sto_garanti_sure_tipi:int','sto_iplik_Ne_no:float','sto_standartmaliyet:float','sto_kanban_kasa_miktari:float'
-                ,'sto_oivuygulama:int','sto_zraporu_stoku_fl:bit','sto_maxiskonto_orani:int','sto_detay_takibinde_depo_kontrolu_fl:bit','sto_tamamlayici_kodu:string|50'
-                ,'sto_oto_barkod_acma_sekli:int','sto_oto_barkod_kod_yapisi:bit','sto_KasaIskontoOrani:float','sto_KasaIskontoTutari:float','sto_gelirpayi:float'
-                ,'sto_oivtutar:float','sto_oivturu:int','sto_giderkodu:string|50','sto_oivvergipntr:int','sto_Tevkifat_turu:int','sto_SKT_fl:bit','sto_terazi_SKT:int'
-                ,'sto_RafOmru:int','sto_KasadaTaksitlenebilir_fl:bit','sto_ufrsfark_kod:string|50','sto_iade_ufrsfark_kod:string|50','sto_yurticisat_ufrsfark_kod:string|50'
-                ,'sto_satiade_ufrsfark_kod:string|50','sto_satisk_ufrsfark_kod:string|50','sto_alisk_ufrsfark_kod:string|50','sto_satmal_ufrsfark_kod:string|50','sto_yurtdisisat_ufrsfark_kod:string|50'
-                ,'sto_ilavemas_ufrsfark_kod:string|50','sto_yatirimtes_ufrsfark_kod:string|50','sto_depsat_ufrsfark_kod:string|50','sto_depsatmal_ufrsfark_kod:string|50'
-                ,'sto_bagortsat_ufrsfark_kod:string|50','sto_bagortsatiade_ufrsfark_kod:string|50','sto_bagortsatisk_ufrsfark_kod:string|50','sto_satfiyfark_ufrsfark_kod:string|50'
-                ,'sto_yurtdisisatmal_ufrsfark_kod:string|50','sto_bagortsatmal_ufrsfark_kod:string|50','sto_sifirbedsatmal_ufrsfark_kod:string|50','sto_uretimmaliyet_ufrsfark_kod:string|50'
-                ,'sto_uretimkapasite_ufrsfark_kod:string|50','sto_degerdusuklugu_ufrs_kod:string|50','sto_halrusumyudesi:float','sto_webe_gonderilecek_fl:bit','sto_min_stok_belirleme_gun:int'
-                ,'sto_sip_stok_belirleme_gun:int','sto_max_stok_belirleme_gun:int','sto_sev_bel_opr_degerlendime_fl:bit','sto_otv_tevkifat_turu:int','sto_kay_plan_degerlendir:int'
-                ,'sto_CRM_sistemine_aktar_fl:bit','sto_yerli_yabanci:int','sto_mensei:string|50','sto_oto_parti_lot_kod_fl:bit','sto_efat_sinif_kodu:string|50','sto_efat_sinif_listesi:string|50'
-                ,'sto_efat_sinif_versiyonu:string|50','sto_utssisteminegonderilsin_fl:bit','sto_posetbeyannamekonusu_fl:bit'
-                ,'sto_STT_oncesi_kaldirma:int','sto_toplam_rafomru:int','sto_fiyat_kasada_belirlenir_fl:bit',
-                'sto_franchise_siparis_dursun:int','sto_GEKAP:string|50','sto_GEKAP_birim:int','sto_resim_url:string|50','sto_GEKAP_depozitoonaykodu:string|50']
-        },
-        PosSatisInsert:    
-        {
-                query : "INSERT INTO [dbo].[TERP_POS_SATIS] " +
-                "([OTARIH] " +
-                ",[DTARIH] " +
-                ",[KULLANICI] " +
-                ",[SUBE] " +
-                ",[TIP] " +
-                ",[TARIH] " +
-                ",[SERI] " +
-                ",[SIRA] " +
-                ",[SATIRNO] " +
-                ",[MKODU] " +
-                ",[PKODU] " +
-                ",[SKODU] " +
-                ",[BARKOD] " +
-                ",[MIKTAR] " +
-                ",[BIRIMPNTR] " +
-                ",[FIYAT] " +
-                ",[ISKONTO] " +
-                ",[KDVPNTR] " +
-                ",[DURUM] " +
-                ",[SPECIAL] " +
-                ")VALUES ( " +
-                "@OTARIH    -- <DTARIH, datetime,> \n " +
-                ",@DTARIH    -- <DTARIH, datetime,> \n " +
-                ",@KULLANICI    -- <KULLANICI, nvarchar(50),> \n " +
-                ",@SUBE    -- <SUBE, int,> \n " +
-                ",@TIP    -- <TIP, tinyint,> \n " +
-                ",@TARIH   --  <TARIH, datetime,> \n " +
-                ",@SERI    -- <SERI, nvarchar(25),> \n " +
-                ",@SIRA    -- <SIRA, int,> \n " +
-                ",@SATIRNO       --    <SATIRNO, int,> \n " +
-                ",@MKODU     --<MKODU, nvarchar(25),> \n " +
-                ",@PKODU    -- <PKODU, nvarchar(25),> \n " +
-                ",@SKODU    -- <SKODU, nvarchar(25),> \n " +
-                ",@BARKOD    -- <BARKOD, nvarchar(50),> \n " +
-                ",@MIKTAR    -- <MIKTAR, float,> \n " +
-                ",@BIRIMPNTR    -- <BIRIMPNTR, tinyint,> \n " +
-                ",@FIYAT     --<FIYAT, float,> \n " +
-                ",@ISKONTO   --  <ISKONTO, float,> \n " +
-                ",@KDVPNTR   --  <KDVPNTR, smallint,> \n " +
-                ",@DURUM    -- <DURUM, int,> \n " +
-                ",@SPECIAL    -- <SPECIAL, nvarchar(25),> \n " +
-                " )" ,
-                param : ['OTARIH:date','DTARIH:date','KULLANICI:string|50','SUBE:int','TIP:int','TARIH:date','SERI:string|50','SIRA:int','SATIRNO:int','MKODU:string|50','PKODU:string|50','BARKOD:string|50','MIKTAR:float','BIRIMPNTR:int','FIYAT:float','ISKONTO:float',
-                                'KDVPNTR:int','DURUM:int','SPECIAL:string|50']
-        },
-        PosTahsilatInsert : 
-        {
-                query :  "INSERT INTO [dbo].[TERP_POS_TAHSILAT] " +
-                          "([OTARIH] " +
-                          ",[DTARIH] " +
-                          ",[KULLANICI] " +
-                          ",[SUBE] " +
-                          ",[TIP] " +
-                          ",[EVRAKTIP] " +
-                          ",[TARIH] " +
-                          ",[SERI] " +
-                          ",[SIRA] " +
-                          ",[SATIRNO] " +
-                          ",[MKODU] " +
-                          ",[PKODU] " +
-                          ",[KKODU] " +
-                          ",[TUTAR] " +
-                          ",[USTU] " +
-                          ",[DURUM] " +
-                          ")  VALUES (  " +
-                          " @[OTARIH]                  --<OTARIH, datetime,> \n " +
-                          ",@[DTARIH]                  --<DTARIH, datetime,> \n " +
-                          ",@[KULLANICI]                  --<KULLANICI, nvarchar(50),> \n " +
-                          ",@[SUBE]                  --<SUBE, int,> \n " +
-                          ",@[TIP]                  --<TIP, tinyint,> \n " +
-                          ",@[EVRAKTIP]                  --<EVRAKTIP, tinyint,> \n " +
-                          ",@[TARIH]                  --<TARIH, datetime,> \n " +
-                          ",@[SERI]                  --<SERI, nvarchar(25),> \n " +
-                          ",@[SIRA]                  --<SIRA, int,> \n " +
-                          ",@[SATIRNO]                  --<SATIRNO, int,> \n " +
-                          ",@[MKODU]                  --<MKODU, nvarchar(25),> \n " +
-                          ",@[PKODU]                  --<PKODU, nvarchar(25),> \n " +
-                          ",@[KKODU]                  --<KKODU, nvarchar(25),> \n " +
-                          ",@[TUTAR]                  --<TUTAR, float,> \n " +
-                          ",@[USTU]                  --<USTU, float,> \n " +
-                          ",@[DURUM]                  --<DURUM, int,> \n " +
-                           " ) ",
-                           param : [ 'OTARIH:date','DTARIH:date','KULLANICI:string|50','SUBE:int','TIP:int'
-                           ,'EVRAKTIP:int','TARIH:date','SERI:string|50','SIRA:int','SATIRNO:int','MKODU:string'
-                           ,'PKODU:string|50','KKODU:string|50','TUTAR:float','USTU:float' ,'DURUM:int' ]
-
-                
-                
-                
-
-        },
-        SatisFiyatListeler :
-        {
-                query : "INSERT INTO [dbo].[STOK_SATIS_FIYAT_LISTELERI] " +
-                "([sfiyat_Guid] " +
-                ",[sfiyat_DBCno] " +
-                ",[sfiyat_SpecRECno] " +
-                ",[sfiyat_iptal] " +
-                ",[sfiyat_fileid] " +
-                ",[sfiyat_hidden] " +
-                ",[sfiyat_kilitli] " +
-                ",[sfiyat_degisti] " +
-                ",[sfiyat_checksum] " +
-                ",[sfiyat_create_user] " +
-                ",[sfiyat_create_date] " +
-                ",[sfiyat_lastup_user] " +
-                ",[sfiyat_lastup_date] " +
-                ",[sfiyat_special1] " +
-                ",[sfiyat_special2] " +
-                ",[sfiyat_special3] " +
-                ",[sfiyat_stokkod] " +
-                ",[sfiyat_listesirano] " +
-                ",[sfiyat_deposirano] " +
-                ",[sfiyat_odemeplan] " +
-                ",[sfiyat_birim_pntr] " +
-                ",[sfiyat_fiyati] " +
-                ",[sfiyat_doviz] " +
-                ",[sfiyat_iskontokod] " +
-                ",[sfiyat_deg_nedeni] " +
-                ",[sfiyat_primyuzdesi] " +
-                ",[sfiyat_kampanyakod] " +
-                " ) VALUES ( " +
-                " @sfiyat_Guid                       --<sfiyat_Guid, uniqueidentifier,> \n " +
-                ",@sfiyat_DBCno                      --<sfiyat_DBCno, smallint,> \n " +
-                ",@sfiyat_SpecRECno                      --<sfiyat_SpecRECno, int,> \n " +
-                ",@sfiyat_iptal                      --<sfiyat_iptal, bit,> \n " +
-                ",@sfiyat_fileid                      --<sfiyat_fileid, smallint,> \n " +
-                ",@sfiyat_hidden                      --<sfiyat_hidden, bit,> \n " +
-                ",@sfiyat_kilitli                      --<sfiyat_kilitli, bit,> \n " +
-                ",@sfiyat_degisti                      --<sfiyat_degisti, bit,> \n " +
-                ",@sfiyat_checksum                      --<sfiyat_checksum, int,> \n " +
-                ",@sfiyat_create_user                      --<sfiyat_create_user, smallint,> \n " +
-                ",@sfiyat_create_date                      --<sfiyat_create_date, datetime,> \n " +
-                ",@sfiyat_lastup_user                      --<sfiyat_lastup_user, smallint,> \n " +
-                ",@sfiyat_lastup_date                      --<sfiyat_lastup_date, datetime,> \n " +
-                ",@sfiyat_special1                      --<sfiyat_special1, nvarchar(4),> \n " +
-                ",@sfiyat_special2                      --<sfiyat_special2, nvarchar(4),> \n " +
-                ",@sfiyat_special3                      --<sfiyat_special3, nvarchar(4),> \n " +
-                ",@sfiyat_stokkod                      --<sfiyat_stokkod, nvarchar(25),> \n " +
-                ",@sfiyat_listesirano                      --<sfiyat_listesirano, int,> \n " +
-                ",@sfiyat_deposirano                      --<sfiyat_deposirano, int,> \n " +
-                ",@sfiyat_odemeplan                      --<sfiyat_odemeplan, int,> \n " +
-                ",@sfiyat_birim_pntr                      --<sfiyat_birim_pntr, tinyint,> \n " +
-                ",@sfiyat_fiyati                      --<sfiyat_fiyati, float,> \n " +
-                ",@sfiyat_doviz                      --<sfiyat_doviz, tinyint,> \n " +
-                ",@sfiyat_iskontokod                      --<sfiyat_iskontokod, nvarchar(4),> \n " +
-                ",@sfiyat_deg_nedeni                      --<sfiyat_deg_nedeni, tinyint,> \n " +
-                ",@sfiyat_primyuzdesi                      --<sfiyat_primyuzdesi, float,> \n " +
-                ",@sfiyat_kampanyakod                      --<sfiyat_kampanyakod, nvarchar(4),> \n " +
-                " ) ",
-                param : ['sfiyat_Guid:string|50','sfiyat_DBCno:int','sfiyat_SpecRECno:int','sfiyat_iptal:bit','sfiyat_fileid:int','sfiyat_hidden:bit'
-                ,'sfiyat_kilitli:bit','sfiyat_degisti:bit','sfiyat_checksum:int','sfiyat_create_user:int','sfiyat_create_date:date','sfiyat_lastup_user:int','sfiyat_lastup_date:date'
-                ,'sfiyat_special1:string|50','sfiyat_special2:string|50','sfiyat_special3:string|50','sfiyat_stokkod:string|50','sfiyat_listesirano:int','sfiyat_deposirano:int'
-                ,'sfiyat_odemeplan:int','sfiyat_birim_pntr:int','sfiyat_fiyati:float','sfiyat_doviz:int','sfiyat_iskontokod:string|50','sfiyat_deg_nedeni:int','sfiyat_primyuzdesi:float'
-                ,'sfiyat_kampanyakod:string|50']
-     
-        }
+        query : "INSERT INTO [dbo].[ITEMS] ( " + 
+                " [CUSER] " + 
+                ",[CDATE] " + 
+                ",[LUSER] " + 
+                ",[LDATE] " + 
+                ",[CODE] " +
+                ",[NAME] " +
+                ",[SNAME] " +
+                ",[ITEM_GRP] " +
+                ",[TYPE] " +
+                ",[VAT] " +
+                ",[COST_PRICE] " +
+                ",[MIN_PRICE] " +
+                ",[MAX_PRICE] " +
+                ",[STATUS] " +
+                ",[PLU] " +
+                ",[WEIGHING] " +
+                ") VALUES ( " +
+                " @CUSER		--<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()		--<CDATE, datetime,> \n " +
+                ",@LUSER		--<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()		--<LDATE, datetime,> \n " +
+                ",@CODE			--<CODE, nvarchar(25),> \n " +
+                ",@NAME			--<NAME, nvarchar(250),> \n " +
+                ",@SNAME		--<SNAME, nvarchar(250),> \n " +
+                ",@ITEM_GRP		--<ITEM_GRP, nvarchar(25),> \n " +
+                ",@TYPE			--<TYPE, int,> \n " +
+                ",@VAT			--<VAT, float,> \n " +
+                ",@COST_PRICE	--<COST_PRICE, float,> \n " +
+                ",@MIN_PRICE	--<MIN_PRICE, float,> \n " +
+                ",@MAX_PRICE	--<MAX_PRICE, float,> \n " +
+                ",@STATUS		--<STATUS, bit,> \n " +
+                ",@PLU			--<PLU, bit,> \n " +
+                ",@WEIGHING		--<WEIGHING, bit,> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','CODE:string|25','NAME:string|250','SNAME:string|250','ITEM_GRP:string|25','TYPE:int',
+                 'VAT:float','COST_PRICE:float','MIN_PRICE:float','MAX_PRICE:bit','STATUS:bit','PLU:bit','WEIGHING:bit']
+    },
+    ItemsTaxInsert :
+    {
+        query : "INSERT INTO [dbo].[ITEM_TAX] ( " + 
+                " [CUSER] " + 
+                ",[CDATE] " + 
+                ",[LUSER] " + 
+                ",[LDATE] " + 
+                ",[ITEM_CODE] " +
+                ",[WHOLEPNTR] " +
+                ",[RETAILPNTR] " +
+                ",[VAT] " +
+                ") VALUES ( " +
+                " @CUSER	        	--<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()	        	--<CDATE, datetime,> \n " +
+                ",@LUSER		        --<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()		        --<LDATE, datetime,> \n " +
+                ",@ITEM_CODE			--<ITEM_CODE, nvarchar(25),> \n " +
+                ",@WHOLEPNTR			--<WHOLEPNTR, int,> \n " +
+                ",@RETAILPNTR			--<RETAILPNTR, int,> \n " +
+                ",@VAT			        --<VAT, float,> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','WHOLEPNTR:int','RETAILPNTR:int','VAT:float']
+    },
+    ItemsBarcodeInsert :
+    {
+        query : "INSERT INTO [dbo].[ITEM_BARCODE] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[ITEM_CODE] " +
+                ",[BARCODE] " +
+                ",[UNIT] " +
+                ",[TYPE] " +
+                ") VALUES ( " +
+                " @CUSER		--<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()	    --<CDATE, datetime,> \n " +
+                ",@LUSER		--<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()	    --<LDATE, datetime,> \n " +
+                ",@ITEM_CODE	--<ITEM_CODE, nvarchar(25),> \n " +
+                ",@BARCODE	    --<BARCODE, nvarchar(50),> \n " +
+                ",@UNIT		    --<UNIT, nvarchar(25),> \n " +
+                ",@TYPE		    --<TYPE, int,> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','BARCODE:string|25','UNIT:string|25','TYPE:int']
+    },
+    ItemsPriceInsert :
+    {
+        query : "INSERT INTO [dbo].[ITEM_PRICE] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[ITEM_CODE] " +
+                ",[TYPE] " +
+                ",[DEPOT] " +
+                ",[START_DATE] " +
+                ",[FINISH_DATE] " +
+                ",[PRICE] " +
+                ",[QUANTITY] " +
+                ",[CUSTOMER] " +
+                ") VALUES ( " +
+                " @CUSER			--<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()		    --<CDATE, datetime,> \n " +
+                ",@LUSER			--<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()		    --<LDATE, datetime,> \n " +
+                ",@ITEM_CODE		--<ITEM_CODE, nvarchar(25),> \n " +
+                ",@TYPE			    --<TYPE, int,> \n " +
+                ",@DEPOT			--<DEPOT, nvarchar(25),> \n " +
+                ",@START_DATE	    --<START_DATE, datetime,> \n " +
+                ",@FINISH_DATE	    --<FINISH_DATE, datetime,> \n " +
+                ",@PRICE			--<PRICE, float,> \n " +
+                ",@QUANTITY		    --<QUANTITY, float,> \n " +
+                ",@CUSTOMER		    --<CUSTOMER, nvarchar(25),> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','TYPE:int','DEPOT:string|25','START_DATE:date','FINISH_DATE:date',
+                 'PRICE:float','QUANTITY:float','CUSTOMER:string|25']
+    },
+    ItemsUnitInsert :
+    {
+        query : "INSERT INTO [dbo].[ITEM_UNIT] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[ITEM_CODE] " +
+                ",[TYPE] " +
+                ",[NAME] " +
+                ",[FACTOR] " +
+                ",[WEIGHT] " +
+                ",[VOLUME] " +
+                ",[WIDTH] " +
+                ",[HEIGHT] " +
+                ",[SIZE] " +
+                ",[CODE] " +
+                ") VALUES ( " +
+                " @CUSER        --<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<CDATE, datetime,> \n " +
+                ",@LUSER        --<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<LDATE, datetime,> \n " +
+                ",@ITEM_CODE    --<ITEM_CODE, nvarchar(25),> \n " +
+                ",@TYPE         --<TYPE, int,> \n " +
+                ",@NAME         --<NAME, nvarchar(50),> \n " +
+                ",@FACTOR       --<FACTOR, float,> \n " +
+                ",@WEIGHT       --<WEIGHT, float,> \n " +
+                ",@VOLUME       --<VOLUME, float,> \n " +
+                ",@WIDTH        --<WIDTH, float,> \n " +
+                ",@HEIGHT       --<HEIGHT, float,> \n " +
+                ",@SIZE         --<SIZE, float,> \n " +
+                ",@CODE         --<CODE, nvarchar(25),> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','TYPE:int','NAME:string|50','FACTOR:float','WEIGHT:float',
+                 'VOLUME:float','WIDTH:float','HEIGHT:float','SIZE:float','CODE:string|25']
+    },
+    DepotInsert :
+    {
+        query : "INSERT INTO [dbo].[DEPOT] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[TYPE] " +
+                ",[CODE] " +
+                ",[NAME] " +
+                ") VALUES ( " +
+                " @CUSER         --<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<CDATE, datetime,> \n " +
+                ",@LUSER        --<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<LDATE, datetime,> \n " +
+                ",@TYPE         --<TYPE, int,> \n " +
+                ",@CODE         --<CODE, nvarchar(25),> \n " +
+                ",@NAME         --<NAME, nvarchar(50),> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','TYPE:int','CODE:string|25','NAME:string|50']
+    },
+    PosSaleSelect:
+    {
+        query : "SELECT " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[DEVICE] " +
+                ",[DEPARTMENT] " +
+                ",[TYPE] " +
+                ",[DOC_DATE] " +
+                ",[REF] " +
+                ",[REF_NO] " +
+                ",[LINE_NO] " +
+                ",[CUSTOMER_CODE] " +
+                ",[ITEM_CODE] " +
+                ",[BARCODE] " +
+                ",[QUANTITY] " +
+                ",[UNIT] " +
+                ",[PRICE] " +
+                ",[DISCOUNT] " +
+                ",[VAT] " +
+                ",[STATUS] " +
+                "FROM [dbo].[POS_SALES] WHERE STATUS = 1 AND DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) " 
+    },
+    PosPaymentSelect:
+    {
+        query : "SELECT " +
+                "[CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[DEVICE] " +
+                ",[DEPARTMENT] " +
+                ",[TYPE] " +
+                ",[DOC_TYPE] " +
+                ",[DOC_DATE] " +
+                ",[REF] " +
+                ",[REF_NO] " +
+                ",[LINE_NO] " +
+                ",[CUSTOMER_CODE] " +
+                ",[CASE_CODE] " +
+                ",[AMOUNT] " +
+                ",[CHANGE] " +
+                ",[STATUS] " +
+                "FROM [dbo].[POS_PAYMENT] WHERE STATUS = 1 AND DOC_DATE >= CONVERT(NVARCHAR,GETDATE()-1,112) AND DOC_DATE <= CONVERT(NVARCHAR,GETDATE(),112) " 
+    },
+    PosSaleInsert : 
+    {
+        query : "INSERT INTO [dbo].[POS_SALES] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[DEVICE] " +
+                ",[DEPARTMENT] " +
+                ",[TYPE] " +
+                ",[DOC_DATE] " +
+                ",[REF] " +
+                ",[REF_NO] " +
+                ",[LINE_NO] " +
+                ",[CUSTOMER_CODE] " +
+                ",[ITEM_CODE] " +
+                ",[BARCODE] " +
+                ",[QUANTITY] " +
+                ",[UNIT] " +
+                ",[PRICE] " +
+                ",[DISCOUNT] " +
+                ",[VAT] " +
+                ",[STATUS] " +
+                ") VALUES ( " +
+                " @CUSER " +
+                ",@CDATE " +
+                ",@LUSER " +
+                ",@LDATE " +
+                ",@DEVICE " +
+                ",@DEPARTMENT " +
+                ",@TYPE " +
+                ",@DOC_DATE " +
+                ",@REF " +
+                ",@REF_NO " +
+                ",@LINE_NO " +
+                ",@CUSTOMER_CODE " +
+                ",@ITEM_CODE " +
+                ",@BARCODE " +
+                ",@QUANTITY " +
+                ",@UNIT " +
+                ",@PRICE " +
+                ",@DISCOUNT " +
+                ",@VAT " +
+                ",@STATUS " +
+                ")",
+        param : ['CUSER:string|25','CDATE:date','LUSER:string|25','LDATE:date','DEVICE:string|20','DEPARTMENT:int','TYPE:int','DOC_DATE:date',
+                'REF:string|25','REF_NO:int','LINE_NO:int','CUSTOMER_CODE:string|25','ITEM_CODE:string|25','BARCODE:string|50','QUANTITY:float',
+                'UNIT:string|50','PRICE:float','DISCOUNT:float','VAT:float','STATUS:int']
+    },
+    PosPaymentInsert : 
+    {
+        query : "INSERT INTO [dbo].[POS_PAYMENT] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[DEVICE] " +
+                ",[DEPARTMENT] " +
+                ",[TYPE] " +
+                ",[DOC_TYPE] " +
+                ",[DOC_DATE] " +
+                ",[REF] " +
+                ",[REF_NO] " +
+                ",[LINE_NO] " +
+                ",[CUSTOMER_CODE] " +
+                ",[CASE_CODE] " +
+                ",[AMOUNT] " +
+                ",[CHANGE] " +
+                ",[STATUS] " +
+                ") VALUES ( " +
+                " @CUSER " +
+                ",@CDATE " +
+                ",@LUSER " +
+                ",@LDATE " +
+                ",@DEVICE " +
+                ",@DEPARTMENT " +
+                ",@TYPE " +
+                ",@DOC_TYPE " +
+                ",@DOC_DATE " +
+                ",@REF " +
+                ",@REF_NO " +
+                ",@LINE_NO " +
+                ",@CUSTOMER_CODE " +
+                ",@CASE_CODE " +
+                ",@AMOUNT " +
+                ",@CHANGE " +
+                ",@STATUS " +
+                ")",
+        param : ['CUSER:string|25','CDATE:date','LUSER:string|25','LDATE:date','DEVICE:string|20','DEPARTMENT:int','TYPE:int',
+                 'DOC_TYPE:int','DOC_DATE:date','REF:string|25','REF_NO:int','LINE_NO:int','CUSTOMER_CODE:string|25',
+                 'CASE_CODE:string|25','AMOUNT:float','CHANGE:float','STATUS:int']
+    },
+    PosPluInsert : 
+    {
+        query : "INSERT INTO [dbo].[POS_PLU] ( " +
+                "[CUSER] " +
+                ",[LUSER] " +
+                ",[CDATE] " +
+                ",[LDATE] " +
+                ",[NAME] " +
+                ",[LOCATION] " +
+                ",[TYPE] " +
+                ",[ITEMS_CODE] " +
+                ",[GRUP_INDEX] " +
+                ") VALUES ( " +
+                "@CUSER                    --<CUSER, nvarchar(25),> \n " +
+                ",@LUSER                   --<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()                --<CDATE, datetime,> \n " +
+                ",GETDATE()                --<LDATE, datetime,> \n " +
+                ",@NAME                    --<NAME, nvarchar(50),> \n " +
+                ",@LOCATION                --<LOCATION, int,> \n " +
+                ",@TYPE                    --<TYPE, int,> \n " +
+                ",@ITEMS_CODE              --<ITEMS_CODE nvarchar(25),> \n " +
+                ",@GRUP_INDEX              --<GRUP_INDEX  int,> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','NAME:string|25','LOCATION:int','TYPE:int','ITEMS_CODE:string|25','GRUP_INDEX:int']
+    },
+    UsersInsert : 
+    {
+        query : "INSERT INTO [dbo].[USERS] ( " +
+                "[CDATE] " +
+                ",[LDATE] " +
+                ",[CODE] " +
+                ",[NAME] " +
+                ",[PASSWORD] " +
+                ",[TAG] " +
+                ",[STATUS] " +
+                ") VALUES ( " +
+                "GETDATE()     --<CDATE, datetime,> \n " +
+                ",GETDATE()     --<LDATE, datetime,> \n " +
+                ",@CODE         --<CODE, nvarchar(25),> \n " +
+                ",@NAME         --<NAME, nvarchar(50),> \n " +
+                ",@PASSWORD         --<PASSWORD, nvarchar(50),> \n " +
+                ",@TAG                  --<TAG,  nvarchar(25),> \n " +
+                ",@STATUS         --<STATUS, int,> \n " +
+                ")",
+        param : ['CODE:string|25','NAME:string|25','PASSWORD:string|50','TAG:string|25','STATUS:int']
+    },
+    ParamsInsert : 
+    {
+        query : "INSERT INTO [dbo].[PARAMS] ( " +
+                " [CUSER] " +
+                ",[CDATE] " +
+                ",[LUSER] " +
+                ",[LDATE] " +
+                ",[NAME] " +
+                ",[VALUE] " +
+                ",[TAG] " +
+                ",[ID] " +
+                ") VALUES ( " +
+                " @CUSER         --<CUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<CDATE, datetime,> \n " +
+                ",@LUSER        --<LUSER, nvarchar(25),> \n " +
+                ",GETDATE()     --<LDATE, datetime,> \n " +
+                ",@NAME         --<TYPE, nvarchar(25),> \n " +
+                ",@VALUE         --<VALUE, nvarchar(50),> \n " +
+                ",@TAG         --<TAG, nvarchar(25),> \n " +
+                ",@ID         --<ID, nvarchar(25),> \n " +
+                ")",
+        param : ['CUSER:string|25','LUSER:string|25','NAME:string|25','VALUE:string|50','TAG:string|25','ID:string|25']
+    },
+    DeviceInsert : 
+    {
+        query : "INSERT INTO [dbo].[DEVICE] ( " +
+                "[CDATE] " +
+                ",[LDATE] " +
+                ",[ID] " +
+                ",[NAME] " +
+                ",[STATUS] " +
+                ") VALUES ( " +
+                "GETDATE()     --<CDATE, datetime,> \n " +
+                ",GETDATE()     --<LDATE, datetime,> \n " +
+                ",@ID         --<ID, nvarchar(25),> \n " +
+                ",@NAME         --<NAME, nvarchar(25),> \n " +
+                ",@STATUS         --<STATUS, int,> \n " +
+                ")",
+        param : ['ID:string|25','NAME:string|25','STATUS:int']
+    },
 }
 module.exports = Query;
