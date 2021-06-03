@@ -73,7 +73,6 @@ function _DataTransfer(pParam)
                 //EĞER UPDATE AKTİF İSE KAYITLAR KONTROL EDİLİP UPDATE EDİLİYOR
                
                 let CtrlData = await GetData(BuildQueryParam(pParam.control,SData[i]),pParam.target);
-
                 if(typeof CtrlData.err == 'undefined')
                 {   
                     if(CtrlData.length > 0)
