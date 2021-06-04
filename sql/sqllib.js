@@ -129,8 +129,9 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
                         else if(pType[0] == "date")
                         {
                             var from = pQuery.value[i]; 
-                            var numbers = from.match(/\d+/g); 
-                            var date = new Date(numbers[0] + "-" +numbers[1] + "-" + numbers[2]);
+                            var numbers = from.match(/\d+/g);
+                            var date = new Date(numbers[2] + "-" +numbers[1] + "-" + numbers[0]);
+
                             request.input(pQuery.param[i].split(":")[0],sql.Date,date);    
                         }
                         else if(pType[0] == "bit")
@@ -139,6 +140,7 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
                         }
                     }
                 }
+
                 request.query(pQuery.query,(err,result) => 
                 {
                     if(err == null)
@@ -174,6 +176,8 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
     {
         const pool = new sql.ConnectionPool(config, err => 
         {
+            var tmpdata = {};
+
             if(err == null)
             {
                 const request = pool.request();
@@ -220,10 +224,10 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
                         }
                     }
                 }
-    
+
                 request.on('row',row =>
                 {
-                    var tmpdata = 
+                    tmpdata = 
                     {
                         tagdata : 'row',
                         result : row
@@ -240,7 +244,7 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
     
                 request.on('done',result =>
                 {
-                    var tmpdata = 
+                    tmpdata = 
                     {
                         tagdata : 'done',
                         result : result
