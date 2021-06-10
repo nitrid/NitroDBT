@@ -11,8 +11,12 @@ angular.module("app",
     {
         templateUrl : "../view/homepage.html"
     })
-    .when("/producttransfer",
+    .when("/transfer",
     {
-        templateUrl : "../view/producttransfer.html"
+        templateUrl : "../view/transfer.html"
+    })
+    .when("/transfer_report",
+    {
+        templateUrl : "../view/transfer_report.html"
     })
 });

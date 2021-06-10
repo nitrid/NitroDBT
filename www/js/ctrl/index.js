@@ -4,8 +4,6 @@ function index($scope,$rootScope,$window,srv,$route)
     {
         $scope.User = "";
         $scope.Password = "";
-
-        console.log(window)
     }
     $scope.BtnLogin = function()
     {

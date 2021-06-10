@@ -16,9 +16,12 @@
         <link href="theme/dist/assets/css/bootstrap-material-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" disabled />
         <link href="theme/dist/assets/css/app-material-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet"  disabled />
         <link href="theme/dist/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="theme/dist/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+        <link href="dev/css/dx.common.css" rel="stylesheet" type="text/css">
+        <link href="dev/css/dx.light.css" rel="stylesheet" type="text/css" >
     </head>
 
-    <body data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+    <body ng-controller = "main" ng-init = "New()" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
         <div id="wrapper">
             <div class="navbar-custom">
                 <div class="container-fluid">
@@ -126,16 +129,16 @@
                             </li>
                             <li class="menu-title">İşlemler</li>
                             <li>
-                                <a ng-href="#!producttransfer" data-toggle="collapse">
+                                <a ng-href="#!transfer" data-toggle="collapse">
                                     <i class="mdi mdi-view-dashboard-outline"></i>
-                                    <span> Stok Aktarım </span>
+                                    <span> Veri Aktarımı </span>
                                 </a>
                             </li>
                             <li class="menu-title mt-2">Raporlar</li>
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="#!transfer_report">
                                     <i class="mdi mdi-calendar"></i>
-                                    <span> Aktarım  </span>
+                                    <span> Aktarım Raporları  </span>
                                 </a>
                             </li>
                         </ul>
@@ -148,6 +151,8 @@
                         <div ng-view></div>
                     </div>
                 </div>
+
+                
                 <footer class="footer">
                     <div class="container-fluid">
                     
@@ -159,6 +164,10 @@
         <script src="theme/dist/assets/libs/flatpickr/flatpickr.min.js"></script>
         <script src="theme/dist/assets/libs/selectize/js/standalone/selectize.min.js"></script>
         <script src="theme/dist/assets/js/app.min.js"></script>
+        <script src="theme/dist/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+        <script src="theme/dist/assets/js/pages/sweet-alerts.init.js"></script>
+        <!-- DX JS File -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.5/js/dx.all.js"></script>
         
         <!-- DBT -->
         <script src="js/lib/angular.js"></script>
@@ -169,11 +178,15 @@
         <script src="js/lib/ui-bootstrap-tpls.js"></script>
 
         <script src="js/ctrl/index.js"></script>
+        <script src="js/ctrl/main.js"></script>
+        <script src="js/ctrl/transferctrl.js"></script>
+        <script src="js/ctrl/transfer_reportctrl.js"></script>
         
         <script src="js/service.js"></script>
         <script src="js/app.js"></script>
         <script src="js/controller.js"></script>
         <script src="js/query.js"></script>
+        <script src="js/schema.js"></script>
         <script src="js/param.js"></script>
 
     </body>

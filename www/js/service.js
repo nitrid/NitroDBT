@@ -5,7 +5,8 @@ angular.module('app.srv', []).service('srv',function($rootScope)
 
     this.SocketConnected = false;
     this.Connection = _Connection;
-    this.Execute = _Execute; 
+    this.Execute = _Execute;
+    this.ExecuteDBT = _ExecuteDBT; 
     
     this.SafeApply = function(pScope,pFn) 
     {
@@ -237,5 +238,77 @@ angular.module('app.srv', []).service('srv',function($rootScope)
             info,
             type
         )
+    }
+    this.DBTDatabaseControl = function(pParam,pQuery)
+    {
+        return new Promise(resolve => 
+        {
+            if(_Socket.connected)
+            {
+                _Socket.emit("DBTDatabaseControl",pParam,pQuery,function(data)
+                {       
+                    resolve(data)
+                });
+            }
+            else
+            {
+                this.SocketConnected = true;
+                resolve(false);
+            }
+        });
+    }
+    function _ExecuteDBT()
+    {
+        return new Promise(resolve => 
+        {
+            let TmpQuery;
+
+            if(_Socket.connected)
+            {
+                if(arguments.length == 1)
+                {
+                    TmpQuery = arguments[0];
+                }
+                else if(arguments.length > 1)
+                {
+                    TmpQuery = window["Query"][arguments[1]];
+                    TmpQuery.value = arguments[2];
+                    TmpQuery.db = '{M}.' + arguments[0];
+
+                    if(typeof arguments[3] != 'undefined')
+                    {
+                        TmpQuery.loading = arguments[3];
+                    }
+                }
+                else
+                {
+                    resolve();
+                } 
+
+                _Socket.emit('DBTDb', TmpQuery, function (data) 
+                {
+                    if(typeof(data.result.err) == 'undefined')
+                    {
+                        if(data.result.recordsets.length == 0)
+                        {
+                            resolve([])
+                        }
+                        else
+                        {
+                            resolve(data.result.recordset)
+                        }
+                    }
+                    else
+                    {     
+                        swal("Hata !","Mikro Sql Query Çalıştırma Hatası : " + data.result.err,icon="error");                 
+                        resolve()
+                    }
+                });
+            }
+            else
+            {
+                console.log("Server Erişiminiz Yok.");
+            }
+        });
     }
 });

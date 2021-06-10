@@ -1,7 +1,5 @@
 let fs = require('fs');
 let _sql = require("./sqllib");
-// let io = require('socket.io')();
-//let lic = require('./license');
 
 let msql;
 let tsql;
@@ -254,6 +252,39 @@ function dbengine(config,io)
                             sharp.cache(false);
                     });
                 }
+            }
+        });
+        socket.on('DBTDatabaseControl',async function(pParam,pQuery,pFn)
+        {
+            msql = new _sql(pParam.server,pParam.database,pParam.user,pParam.password,false);
+            data = [];
+
+            data = (JSON.parse(await msql.QueryDBT(pQuery))).recordset
+
+            pFn(data)
+        });
+        socket.on('DBTDb',function(pQuery,fn) 
+        {   
+            try
+            {
+                msql = new _sql(pQuery.db.server,pQuery.db.database,pQuery.db.user,pQuery.db.password,false);
+                msql.QueryPromise(pQuery,function(data)
+                {
+                    let obj = JSON.parse(data);
+                    fn({tag : pQuery.tag,result : obj});
+                });
+            }
+            catch(err)
+            {
+                var tmperr = { err : 'Error dbengine.js QMikroDb errCode : 107 - ' + err} 
+                socket.emit('RMikroDb',
+                {
+                    tag : pQuery.tag, 
+                    result : tmperr
+                });  
+
+                fn({tag : pQuery.tag,result : tmperr});
+                console.log(tmperr);
             }
         });
     });
