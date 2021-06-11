@@ -60,6 +60,29 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
             },
         });
     }
+    function ErrorGrid()
+    {
+        $("#TblError").dxDataGrid
+        ({
+            dataSource: $scope.ErrorGrid,
+            columnMinWidth: 200,
+            columnAutoWidth: true,
+            showBorders: true,
+            filterRow: 
+            {
+                visible: true,
+                applyFilter: "auto"
+            },
+            headerFilter: 
+            {
+                visible: true
+            },
+            scrolling: 
+            {
+                columnRenderingMode: "horizontal"
+            },
+        });
+    }
     function ShemaKeys(pType,pShema,pData)
     {
         let value = [];
@@ -114,7 +137,6 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
                 param : pShema.insert.param,
                 value : ShemaKeys('insert',pShema,pData)
             }
-    
             resolve(await srv.ExecuteDBT(TmpQuery));
         });
     }
@@ -153,6 +175,7 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
     {
         InitGrid();
         InfoGrid();
+        ErrorGrid();
 
         $scope.Source =
         {
@@ -180,6 +203,7 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
         $scope.GridData = [];
         $scope.SelectedData = [];
         $scope.InfoGrid = [];
+        $scope.ErrorGrid = [];
     }
     $scope.BtnSourceDataBaseCheck = async function()
     {
@@ -266,21 +290,36 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
             srv.Alert('Transfer Başarısız','Aktarılacak Satır Seçimi Yapınız.','warning');
             return;
         }
+        if($scope.Source.table != $scope.Target.table)
+        {
+            srv.Alert('Transfer Başarısız','Kaynak Tablo İle Hedef Tablo Aynı Olmalı.','warning');
+            return;
+        }
+        
         for (let i = 0; i < window.Schema.length; i++) 
         {
             if(window.Schema[i].table == $scope.Target.table)
             {   
                 for (let x = 0; x < $scope.SelectedData.length; x++) 
                 {
+                    let datacontrol = "";
                     if((await DataControl(window.Schema[i],$scope.SelectedData[x])).length > 0)
                     {
-                        await DataUpdate(window.Schema[i],$scope.SelectedData[x]);
+                        datacontrol = await DataUpdate(window.Schema[i],$scope.SelectedData[x]);
                     }
                     else
                     {
-                        await DataInsert(window.Schema[i],$scope.SelectedData[x]);
+                        datacontrol = await DataInsert(window.Schema[i],$scope.SelectedData[x]);
                     }
-                    await InfoInsert($scope.SelectedData[x]);
+                    if(typeof(datacontrol) !='undefined')
+                    {
+                        await InfoInsert($scope.SelectedData[x]);
+                    }
+                    else
+                    {
+                        $scope.ErrorGrid.push($scope.SelectedData[x]);
+                    }
+                    
                     let TmpPercent = (((x+1) / $scope.SelectedData.length) * 100).toFixed(2);
 
                     $('#PrBar').text(TmpPercent + '%')
@@ -288,7 +327,8 @@ function transferctrl($scope,$rootScope,$window,srv,$route)
                 }
                 
                 $("#TblInfo").dxDataGrid("instance").option("dataSource", $scope.InfoGrid);
-                srv.Alert('Aktarım Başarılı','Aktarım Başarıyla Gerçekleşti','success');
+                $("#TblError").dxDataGrid("instance").option("dataSource", $scope.ErrorGrid);
+                srv.Alert('Aktarım Tamamlandı','Aktarım İşlemi Tamamlandı','success');
             }
         }
     }
