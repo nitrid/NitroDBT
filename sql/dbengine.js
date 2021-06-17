@@ -175,22 +175,6 @@ function dbengine(config,io)
                 console.log(tmperr);
             }
         });
-        socket.on("LangSave",function(pParam,fn)
-        {
-            let FilePath = "";
-            if(typeof process.env.APP_DIR_PATH != 'undefined')
-            {
-                FilePath = process.env.APP_DIR_PATH + "/.";
-            }
-            
-            fs.writeFile(FilePath + pParam[1],'var lang = ' + JSON.stringify(pParam[0], null, '\t'),function(err)
-            {
-                if(typeof(err) != "undefined")
-                    fn(true);
-                else
-                    fn(false);
-            });
-        });
         socket.on("ImgUpload",function(pParam,fn)
         {
             let FilePath = "";
@@ -286,6 +270,22 @@ function dbengine(config,io)
                 fn({tag : pQuery.tag,result : tmperr});
                 console.log(tmperr);
             }
+        });
+        socket.on("TransferSave",function(pParam,fn)
+        {
+            let FilePath = "";
+            if(typeof process.env.APP_DIR_PATH != 'undefined')
+            {
+                FilePath = process.env.APP_DIR_PATH + "/.";
+            }
+            
+            fs.writeFile(FilePath + pParam[1],'var transfer = ' + JSON.stringify(pParam[0], null, '\t'),function(err)
+            {
+                if(typeof(err) != "undefined")
+                    fn(true);
+                else
+                    fn(false);
+            });
         });
     });
 }

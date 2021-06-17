@@ -127,12 +127,20 @@
                                     <span> Ana Sayfa </span>
                                 </a>
                             </li>
-                            <li class="menu-title">İşlemler</li>
+                            <li class="menu-title">Aktarım</li>
                             <li>
-                                <a ng-href="#!transfer" data-toggle="collapse">
+                                <a ng-href="#!standart_transfer" data-toggle="collapse">
                                     <i class="mdi mdi-view-dashboard-outline"></i>
-                                    <span> Veri Aktarımı </span>
+                                    <span> Standart Aktarım </span>
                                 </a>
+                                <a ng-href="#!special_transfer" data-toggle="collapse">
+                                    <i class="mdi mdi-bookmark-multiple-outline"></i>
+                                    <span> Özel Aktarım </span>
+                                </a>
+                            </li>
+                            <li class="menu-title">Kayıtlı Aktarımlar</li>
+                            <li id="menu">
+
                             </li>
                             <li class="menu-title mt-2">Raporlar</li>
                             <li>
@@ -151,8 +159,6 @@
                         <div ng-view></div>
                     </div>
                 </div>
-
-                
                 <footer class="footer">
                     <div class="container-fluid">
                     
@@ -179,7 +185,8 @@
 
         <script src="js/ctrl/index.js"></script>
         <script src="js/ctrl/main.js"></script>
-        <script src="js/ctrl/transferctrl.js"></script>
+        <script src="js/ctrl/special_transferctrl.js"></script>
+        <script src="js/ctrl/standart_transferctrl.js"></script>
         <script src="js/ctrl/transfer_reportctrl.js"></script>
         
         <script src="js/service.js"></script>
@@ -187,6 +194,7 @@
         <script src="js/controller.js"></script>
         <script src="js/query.js"></script>
         <script src="js/schema.js"></script>
+        <script src="js/transfersave.js"></script>
         <script src="js/param.js"></script>
 
     </body>

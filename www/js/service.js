@@ -271,7 +271,7 @@ angular.module('app.srv', []).service('srv',function($rootScope)
                 }
                 else if(arguments.length > 1)
                 {
-                    TmpQuery = window["Query"][arguments[1]];
+                    TmpQuery = window["query"][arguments[1]];
                     TmpQuery.value = arguments[2];
                     TmpQuery.db = '{M}.' + arguments[0];
 

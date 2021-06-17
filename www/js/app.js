@@ -11,9 +11,13 @@ angular.module("app",
     {
         templateUrl : "../view/homepage.html"
     })
-    .when("/transfer",
+    .when("/special_transfer",
     {
-        templateUrl : "../view/transfer.html"
+        templateUrl : "../view/special_transfer.html"
+    })
+    .when("/standart_transfer",
+    {
+        templateUrl : "../view/standart_transfer.html"
     })
     .when("/transfer_report",
     {
