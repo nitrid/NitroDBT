@@ -83,6 +83,49 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
             },
         });
     }
+    function ServerGrid()
+    {
+        $("#TblServer").dxDataGrid
+        ({
+            dataSource: window.ServerList,
+            columnMinWidth: 150,
+            columnAutoWidth: true,
+            showBorders: true,
+            filterRow: 
+            {
+                visible: true,
+                applyFilter: "auto"
+            },
+            headerFilter: 
+            {
+                visible: true
+            },
+            selection: 
+            {
+                mode: "single"
+            },
+            scrolling: 
+            {
+                columnRenderingMode: "horizontal"
+            },
+            onSelectionChanged: function (selectedItems) 
+            {
+                srv.SafeApply($scope,function()
+                {
+                    if($scope.ServerListType == 0)
+                    {
+                        $scope.Source = selectedItems.selectedRowsData[0];
+                        $scope.Source.table = "";
+                    }
+                    else
+                    {
+                        $scope.Target = selectedItems.selectedRowsData[0];
+                        $scope.Target.table = "";
+                    }
+                });
+            }
+        });
+    }
     function ShemaKeys(pType,pShema,pData)
     {
         let value = [];
@@ -214,20 +257,21 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
         InitGrid();
         InfoGrid();
         ErrorGrid();
+        ServerGrid();
 
         $scope.Source =
         {
-            "server": "192.168.100.12",
-            "user": "nitrogen",
-            "password": "lp8462+",
+            "server": "",
+            "user": "",
+            "password": "",
             "database" : "",
             "table": "",
         };
         $scope.Target =
         {
-            "server": "176.236.120.198",
-            "user": "nitrogen",
-            "password": "lp8462+",
+            "server": "",
+            "user": "",
+            "password": "",
             "database" : "",
             "table": "",
         };
@@ -236,6 +280,7 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
         $scope.CreateTitle = "";
         $scope.ToplamSatir = 0;
         $scope.Progress = 0;
+        $scope.ServerListType = 0;
         $scope.Save = true;
         $scope.Delete = false;
 
@@ -379,12 +424,12 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
                     if((await DataControl(window.Schema[i],$scope.SelectedData[x])).length > 0)
                     {
                         datacontrol = await DataUpdate(window.Schema[i],$scope.SelectedData[x]);
-                        if(typeof(datacontrol) !='undefined'){$scope.UpdateInfo.push(pData)}
+                        if(typeof(datacontrol) !='undefined'){$scope.UpdateInfo.push($scope.SelectedData[x])}
                     }
                     else
                     {
                         datacontrol = await DataInsert(window.Schema[i],$scope.SelectedData[x]);
-                        if(typeof(datacontrol) !='undefined'){$scope.InsertInfo.push(pData)}
+                        if(typeof(datacontrol) !='undefined'){$scope.InsertInfo.push($scope.SelectedData[x])}
                     }
                     if(typeof(datacontrol) !='undefined')
                     {
@@ -404,8 +449,8 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
                     
                     let TmpPercent = (((x+1) / $scope.SelectedData.length) * 100).toFixed(2);
 
-                    $('#PrBar').text(TmpPercent + '%')
-                    $('#PrBar').width(TmpPercent + '%')
+                    $('#SPrBar').text(TmpPercent + '%')
+                    $('#SPrBar').width(TmpPercent + '%')
                 }
                 
                 $("#TblInfo").dxDataGrid("instance").option("dataSource", $scope.InfoGrid);
@@ -482,5 +527,11 @@ function special_transferctrl($scope,$rootScope,$window,srv,$route,$routeParams)
         $scope.SelectedData = $scope.ErrorGrid;
         $scope.ErrorGrid = [];
         $scope.BtnTransfer();
+    }
+    $scope.BtnIpList = async function(pTip)
+    {
+        $scope.ServerListType = parseInt(pTip);
+        $('#MdlIpList').modal('show');
+        $("#TblServer").dxDataGrid("instance").option("dataSource", window.ServerList);
     }
 }

@@ -29,13 +29,16 @@
                                 </div> 
                                 <div class="form-group row mb-3">
                                     <label class="col-md-4 col-form-label" for="userName2">Veritabanı IP :</label>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" ng-model = "Source.server">
                                             <div class="input-group-append">
-                                                <button class="btn btn-dark btn-block waves-effect waves-light" ng-click = "BtnSourceDataBaseCheck()" type="button">Onay</button>
+                                                <button class="btn btn-dark btn-block waves-effect waves-light" ng-click = "BtnIpList(0)" type="button">...</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success btn-block waves-effect waves-light" ng-click = "BtnSourceDataBaseCheck()" type="button"><i class="fe-check"></i></button>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
@@ -81,13 +84,16 @@
                                 </div>
                                 <div class="form-group row mb-3">
                                     <label class="col-md-4 col-form-label" for="userName2">Veritabanı IP :</label>
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control" ng-model = "Target.server">
                                             <div class="input-group-append">
-                                                <button class="btn btn-dark btn-block waves-effect waves-light" ng-click = "BtnTargetDataBaseCheck()" type="button">Onay</button>
+                                                <button class="btn btn-dark btn-block waves-effect waves-light" ng-click = "BtnIpList(1)" type="button">...</button>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-success btn-block waves-effect waves-light" ng-click = "BtnTargetDataBaseCheck()" type="button"><i class="fe-check"></i></button>
                                     </div>
                                 </div>
                                 <div class="form-group row mb-3">
@@ -130,7 +136,7 @@
     <div class="row mb-3">
         <div class="col-12">
             <div class="progress mb-0">
-                <div class="progress-bar bg-dark" id="PrBar" role="progressbar" style="width: 0%;">0 %</div>
+                <div class="progress-bar bg-dark" id="SPrBar" role="progressbar" style="width: 0%;">0 %</div>
             </div>
         </div>
     </div>
@@ -202,6 +208,22 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-block btn-dark" ng-click = "BtnSave(1)" data-dismiss="modal">Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="MdlIpList" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="fullWidthModalLabel">Server Listesi</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div id = "TblServer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Çıkış</button>
                 </div>
             </div>
         </div>
