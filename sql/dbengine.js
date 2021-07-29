@@ -1,11 +1,14 @@
 let fs = require('fs');
 let _sql = require("./sqllib");
+let _sync = require("../sync/datasync");
+let sync = new _sync()
 
 let msql;
 let tsql;
 
 let LicKullanici = 0;
 let LicMenu = "";
+let TransferStatus = [];
 
 function dbengine(config,io)
 {    
@@ -287,6 +290,30 @@ function dbengine(config,io)
                     fn(false);
             });
         });
+        socket.on("TransferService",async function(pServiceType,pType,pTime,fn)
+        {
+            if(pServiceType == 1)
+            {
+                TransferStatus.push(pType)
+            }
+            else
+            {
+                TransferStatus = ArrayRemove(TransferStatus,pType)
+            }
+            sync.Start(pServiceType,pType,pTime)
+            fn(TransferStatus);
+        });
+        socket.on("TransferStatus",async function(fn)
+        {
+            fn(TransferStatus);
+        });
+        function ArrayRemove(arr, value) 
+        { 
+            return arr.filter(function(ele)
+            { 
+                return ele != value;
+            });
+        }
     });
 }
 

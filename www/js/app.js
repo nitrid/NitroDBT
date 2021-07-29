@@ -23,4 +23,8 @@ angular.module("app",
     {
         templateUrl : "../view/transfer_report.html"
     })
+    .when("/transfer_service",
+    {
+        templateUrl : "../view/transfer_service.html"
+    })
 });

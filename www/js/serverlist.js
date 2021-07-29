@@ -28,5 +28,4 @@ var ServerList =
 		"user": "nitrogen",
 		"password": "lp8462+",
 	},
-
 ]

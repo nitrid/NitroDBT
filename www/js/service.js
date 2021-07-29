@@ -257,6 +257,42 @@ angular.module('app.srv', []).service('srv',function($rootScope)
             }
         });
     }
+    this.TransferService = function(pServiceType,pType,pTime) //ServiceType : Start - Stop , Type : ProsesName
+    {
+        return new Promise(resolve => 
+        {
+            if(_Socket.connected)
+            {
+                _Socket.emit("TransferService",pServiceType,pType,pTime,function(data)
+                {       
+                    resolve(data)
+                });
+            }
+            else
+            {
+                this.SocketConnected = true;
+                resolve(false);
+            }
+        });
+    }
+    this.TransferStatus = function() //ServiceType : Start - Stop , Type : ProsesName
+    {
+        return new Promise(resolve => 
+        {
+            if(_Socket.connected)
+            {
+                _Socket.emit("TransferStatus",function(data)
+                {       
+                    resolve(data)
+                });
+            }
+            else
+            {
+                this.SocketConnected = true;
+                resolve(false);
+            }
+        });
+    }
     function _ExecuteDBT()
     {
         return new Promise(resolve => 
