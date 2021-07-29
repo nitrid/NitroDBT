@@ -1,5 +1,4 @@
 var sql = require('mssql/msnodesqlv8');
-
 var config = "";
 // Constructor
 function sqllib(pServer,pDatabase,pUid,pPwd,pTrust)
@@ -61,14 +60,12 @@ sqllib.prototype.SetConfig = function(pServer,pDatabase,pUser,pPassword)
 {
     BuildConfig(pServer,pDatabase,pUser,pPassword);
 }
-sqllib.prototype.TryConnection = function(pConfig,pResult)
+sqllib.prototype.TryConnection = function(pResult)
 {
     try
     {
-        console.log(pConfig)
-        const pool = new sql.ConnectionPool(pConfig, err => 
+        const pool = new sql.ConnectionPool(config, err => 
         {
-            console.log(err)
             if(err == null)
             {
                 pool.connect(err =>
@@ -105,6 +102,7 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
 
                 if(typeof pQuery.param != 'undefined')
                 {
+                    
                     for(i = 0;i < pQuery.param.length;i++)
                     {
                         let pType = null;
@@ -132,9 +130,8 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
                         else if(pType[0] == "date")
                         {
                             var from = pQuery.value[i]; 
-                            var numbers = from.match(/\d+/g);
-                            var date = new Date(numbers[2] + "-" +numbers[1] + "-" + numbers[0]);
-
+                            var numbers = from.match(/\d+/g); 
+                            var date = new Date(numbers[0] + "-" +numbers[1] + "-" + numbers[2]);
                             request.input(pQuery.param[i].split(":")[0],sql.Date,date);    
                         }
                         else if(pType[0] == "bit")
@@ -143,7 +140,6 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
                         }
                     }
                 }
-
                 request.query(pQuery.query,(err,result) => 
                 {
                     if(err == null)
@@ -164,6 +160,8 @@ sqllib.prototype.QueryPromise = function(pQuery,pResult)
                 pResult(JSON.stringify(tmperr));
             }
         });
+
+        
     }
     catch(err)
     {
@@ -177,8 +175,6 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
     {
         const pool = new sql.ConnectionPool(config, err => 
         {
-            var tmpdata = {};
-
             if(err == null)
             {
                 const request = pool.request();
@@ -225,10 +221,10 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
                         }
                     }
                 }
-
+    
                 request.on('row',row =>
                 {
-                    tmpdata = 
+                    var tmpdata = 
                     {
                         tagdata : 'row',
                         result : row
@@ -245,7 +241,7 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
     
                 request.on('done',result =>
                 {
-                    tmpdata = 
+                    var tmpdata = 
                     {
                         tagdata : 'done',
                         result : result
@@ -267,86 +263,5 @@ sqllib.prototype.QueryStream = function(pQuery,pResult)
         pResult(JSON.stringify(tmperr));
         console.log(tmperr);
     }
-}
-sqllib.prototype.QueryDBT = function(pQuery)
-{
-    return new Promise(resolve => 
-    {
-        try
-        {   
-            const pool = new sql.ConnectionPool(config, err => 
-            {
-                if(err == null)
-                {
-                    const request = pool.request();           
-    
-                    if(typeof pQuery.param != 'undefined')
-                    {
-                        for(i = 0;i < pQuery.param.length;i++)
-                        {
-                            let pType = null;
-                            if(pQuery.param[i].split(":").length > 1)
-                            {
-                                pType = pQuery.param[i].split(":")[1].split("|");
-                            }
-                            else
-                            {
-                                pType = pQuery.type[i].split("|");   
-                            }
-                            
-                            if(pType[0] == "string")
-                            {
-                                request.input(pQuery.param[i].split(":")[0],sql.NVarChar(pType[1]),pQuery.value[i]);    
-                            }
-                            else if(pType[0] == "int")
-                            {
-                                request.input(pQuery.param[i].split(":")[0],sql.Int,pQuery.value[i]);    
-                            }
-                            else if(pType[0] == "float")
-                            {
-                                request.input(pQuery.param[i].split(":")[0],sql.Float,pQuery.value[i]);    
-                            }
-                            else if(pType[0] == "date")
-                            {
-                                var from = pQuery.value[i]; 
-                                var numbers = from.match(/\d+/g);
-                                var date = new Date(numbers[2] + "-" +numbers[1] + "-" + numbers[0]);
-    
-                                request.input(pQuery.param[i].split(":")[0],sql.Date,date);    
-                            }
-                            else if(pType[0] == "bit")
-                            {
-                                request.input(pQuery.param[i].split(":")[0],sql.Bit,pQuery.value[i]);    
-                            }
-                        }
-                    }
-    
-                    request.query(pQuery.query,(err,result) => 
-                    {
-                        if(err == null)
-                        {
-                            resolve(JSON.stringify(result));
-                        }
-                        else
-                        {
-                            var tmperr = { err : 'Error sqllib.js QueryPromise errCode : 101 - ' + err} 
-                            resolve(JSON.stringify(tmperr));
-                        }
-                        pool.close();
-                    });
-                }
-                else
-                {
-                    var tmperr = { err : 'Error sqllib.js QueryPromise errCode : 102 - ' + err} 
-                    resolve(JSON.stringify(tmperr));
-                }
-            });
-        }
-        catch(err)
-        {
-            var tmperr = { err : 'Error sqllib.js QueryPromise errCode : 103 - ' + err} 
-            resolve(JSON.stringify(tmperr));
-        }
-    });
 }
 module.exports = sqllib;

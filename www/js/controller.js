@@ -1,7 +1,0 @@
-angular.module('app.controller', [])
-.controller('index',['$scope','$rootScope','$window','srv','$route',index])
-.controller('main',['$scope','$rootScope','$window','srv','$route',main])
-.controller('special_transferctrl',['$scope','$rootScope','$window','srv','$route','$routeParams',special_transferctrl])
-.controller('standart_transferctrl',['$scope','$rootScope','$window','srv','$route',standart_transferctrl])
-.controller('transfer_reportctrl',['$scope','$rootScope','$window','srv','$route',transfer_reportctrl])
-.controller('transfer_servicectrl',['$scope','$rootScope','$window','srv','$route',transfer_servicectrl])

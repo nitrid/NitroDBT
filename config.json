@@ -1,8 +1,0 @@
-{
-    "server":"192.168.100.12",
-    "database":"NITROGENB2B",
-    "uid":"nitrogen",
-    "pwd":"lp8462+",
-    "port" : "80",
-    "trustedConnection" : false
-}

@@ -1415,13 +1415,13 @@ let Query =
                 ",@ITEM_CODE		--<ITEM_CODE, nvarchar(25),> \n " +
                 ",@TYPE			    --<TYPE, int,> \n " +
                 ",@DEPOT			--<DEPOT, nvarchar(25),> \n " +
-                ",GETDATE()	    --<START_DATE, datetime,> \n " +
-                ",GETDATE()	    --<FINISH_DATE, datetime,> \n " +
+                ",@START_DATE	    --<START_DATE, datetime,> \n " +
+                ",@FINISH_DATE	    --<FINISH_DATE, datetime,> \n " +
                 ",@PRICE			--<PRICE, float,> \n " +
                 ",@QUANTITY		    --<QUANTITY, float,> \n " +
                 ",@CUSTOMER		    --<CUSTOMER, nvarchar(25),> \n " +
                 ")",
-        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','TYPE:int','DEPOT:string|25',
+        param : ['CUSER:string|25','LUSER:string|25','ITEM_CODE:string|25','TYPE:int','DEPOT:string|25','START_DATE:date','FINISH_DATE:date',
                  'PRICE:float','QUANTITY:float','CUSTOMER:string|25']
     },
     ItemsUnitInsert :

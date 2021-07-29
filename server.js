@@ -1,13 +1,7 @@
 var fs = require('fs');
-var config = require('./config.json');
-var express = require('express');
-var app = express();
-app.use('/',express.static(__dirname + "/www"));
-let http = app.listen(config.port);
-let io = require('socket.io')(http);
-var dbengine = require('./sql/dbengine')(config,io);
-
-
+var _sync = require('./sync/datasync.js');
+let sync = new _sync();
+sync.Start();
 //******** LOG **********************************************************************/
 var trueLog = console.log;
 console.log = function(msg) 
