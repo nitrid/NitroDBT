@@ -1,6 +1,5 @@
 let SqlLib = require("../sql/sqllib");
 let Process = require("./process");
-let Moment = require('moment')
 
 function datasync() 
 {
@@ -10,111 +9,62 @@ datasync.prototype.Start = _Start;
 datasync.prototype.DataTransfer = _DataTransfer;
 datasync.prototype.Process = Process;
 
-function _Start() 
+async function _Start() 
 {
-    console.log(Moment().format("HH:mm:ss") + " Servis Başlatıldı.")
-    for (let i = 0;i < Process.process_list.length;i++)
-    {
-        if(typeof Process.process_list[i].name != 'undefined')
+    for (let i = 0;i < Process.length;i++)
+    {        
+        if(typeof Process[i].auto != 'undefined')
         {
-            if(typeof Process.process_list[i].auto != 'undefined')
-            {
-                setTimeout(TransferLists,Process.process_list[i].auto,{...Process.process_list[i]});
-            }
+            setTimeout(StartTransfer,Process[i].auto,{...Process[i]});
         }
         else
         {
-            for (let x = 0; x < Process.process_list[i].list.length; x++) 
-            {
-                if(typeof Process.process_list[i].list[x].auto != 'undefined')
-                {
-                    setTimeout(TransferSingle,Process.process_list[i].list[x].auto,{...Process.process_list[i].list[x]});
-                }
-            }
+            await _DataTransfer({...Process[i]});
         }
     }
 }
-async function TransferLists(pParam)
-{
-    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Aktarımı Başlatılıyor.")
-    for (let i = 0; i < pParam.list.length; i++) 
-    {
-        pParam.list[i].source = pParam.source;
-        pParam.list[i].target = pParam.target;
-
-        await _DataTransfer({...pParam.list[i]});
-    }
-
-    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Aktarımı Tamamlandı.")
-    setTimeout(TransferLists,pParam.auto,{...pParam});
-}
-async function TransferSingle(pParam)
+async function StartTransfer(pParam)
 {
     await _DataTransfer({...pParam});
-    setTimeout(TransferSingle,pParam.auto,{...pParam})
+    setTimeout(StartTransfer,pParam.auto,{...pParam})
 }
 function _DataTransfer(pParam)
 {
     return  new Promise(async resolve =>
     {
-        console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Kayıtları Aktarılıyor.")
+        console.log(pParam.name + " Kayıtları Aktarılıyor.")
         let SData = await GetData(pParam.select,pParam.source);
-
-        if(typeof SData.err != 'undefined')
-        {
-            console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Get  İşleminde Hata 01: " + SData.err)
-            resolve();
-        }
-
+        
         for (let i = 0;i < SData.length;i++)
         {
             if(typeof pParam.control != 'undefined')
             {
                 //EĞER UPDATE AKTİF İSE KAYITLAR KONTROL EDİLİP UPDATE EDİLİYOR
-               
                 let CtrlData = await GetData(BuildQueryParam(pParam.control,SData[i]),pParam.target);
-
-                if(typeof CtrlData.err == 'undefined')
-                {   
+                if(typeof CtrlData != 'undefined')
+                {
                     if(CtrlData.length > 0)
                     {
                         //UPDATE
                         if(typeof pParam.update != 'undefined')
                         {
-                            let TmpData = await Execute(BuildQueryParam(pParam.update,SData[i]),pParam.target);
-                            if(typeof TmpData != 'undefined')
-                            {
-                                console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Update İşleminde Hata : " + TmpData.err)
-                            }
+                            await Execute(BuildQueryParam(pParam.update,SData[i]),pParam.target);
                         }
                     }
                     else
                     {
                         //INSERT
-                        let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
-                        if(typeof TmpData != 'undefined')
-                        {
-                            console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert İşleminde Hata 01 : " + TmpData.err)
-                        }
+                        await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
                     }
                 } 
-                else
-                {
-                    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Get İşleminde Hata 02 : " + CtrlData.err)
-                }
             }
             else
             {
                 //EĞER UPDATE AKTİF DEĞİLSE KAYITLAR SADECE İNSERT EDİLİYOR.KAYIT ÇAKIŞMASINDAN BEN MESUL DEĞİLİM.
-                let TmpData = await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
-                if(typeof TmpData != 'undefined')
-                {
-                    console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Insert  İşleminde Hata 02: " + TmpData.err)
-                }
+                await Execute(BuildQueryParam(pParam.insert,SData[i]),pParam.target);
             }
         }
-
-        console.log(Moment().format("HH:mm:ss") + ' ' + pParam.name + " Aktarımı Bitti.")
+        console.log(pParam.name + " Aktarımı Bitti.")
         resolve();
     });
 }
@@ -133,12 +83,9 @@ function GetData(pQuery,pConnet)
         {
             if(typeof JSON.parse(Data).err != 'undefined')
             {
-                resolve(JSON.parse(Data))
+                console.log(JSON.parse(Data).err)
             }
-            else
-            {
-                resolve(JSON.parse(Data).recordset);
-            }
+            resolve(JSON.parse(Data).recordset);
         });
     });
 }
@@ -152,16 +99,14 @@ function Execute(pQuery,pConnet)
         {
             pQuery = pQuery();
         }
+
         TmpSql.QueryPromise(pQuery,function(Data)
         {
             if(typeof JSON.parse(Data).err != 'undefined')
             {
-                resolve(JSON.parse(Data))
+                console.log(JSON.parse(Data).err)
             }
-            else
-            {
-                resolve();
-            }
+            resolve();
         });
     });
 }
